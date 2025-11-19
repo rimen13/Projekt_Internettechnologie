@@ -5,7 +5,7 @@
 		<specification type="resistance">
 			<value>1</value>
 			<exponent>3</exponent>
-			<unit>Ω</unit>
+			<unit>&#8486;</unit>
 			<tolerance unit="%">5</tolerance>
 		</specification>
 		<amount>411527</amount>
@@ -16,7 +16,7 @@
 		<specification type="resistance">
 			<value>10</value>
 			<exponent>3</exponent>
-			<unit>Ω</unit>
+			<unit>&#8486;</unit>
 			<tolerance unit="%">5</tolerance>
 		</specification>
 		<amount>205024</amount>
@@ -25,10 +25,10 @@
 	</product>
 	<product id="R003" type="resistor">
 		<specification type="resistance">
-				<value>100</value>
-				<exponent>3</exponent>
-				<unit>Ω</unit>
-				<tolerance unit="%">5</tolerance>
+			<value>100</value>
+			<exponent>3</exponent>
+			<unit>&#8486;</unit>
+			<tolerance unit="%">5</tolerance>
 		</specification>
 		<amount>248356</amount>
 		<price unit="EUR">0.02</price>
@@ -46,7 +46,7 @@
 		<manufacturer>Taiyo Yuden</manufacturer>
 	</product>
 	<product id="L002" type="inductor">
-		<specification type="inductancance">
+		<specification type="inductance">
 			<value>10</value>
 			<exponent>-6</exponent>
 			<unit>H</unit>
