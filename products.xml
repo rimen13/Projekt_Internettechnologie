@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<products>
+	<product id="R001" type="resistor">
+		<specifications>
+			<physicalQuantity type="resistance">
+				<value>1</value>
+				<exponent>3</exponent>
+				<unit>Ω</unit>
+			</physicalQuantity>
+			<tolerance unit="%">5</tolerance>
+		</specifications>
+		<amount>411527</amount>
+		<price unit="EUR">0.02</price>
+		<manufacturer>Stackpole Electronics</manufacturer>
+	</product>
+	<product id="R002" type="resistor">
+		<specifications>
+			<physicalQuantity type="resistance">
+				<value>10</value>
+				<exponent>3</exponent>
+				<unit>Ω</unit>
+			</physicalQuantity>
+			<tolerance unit="%">5</tolerance>
+		</specifications>
+		<amount>205024</amount>
+		<price unit="EUR">0.02</price>
+		<manufacturer>Stackpole Electronics</manufacturer>
+	</product>
+	<product id="R003" type="resistor">
+		<specifications>
+			<physicalQuantity type="resistance">
+				<value>100</value>
+				<exponent>3</exponent>
+				<unit>Ω</unit>
+			</physicalQuantity>
+			<tolerance unit="%">5</tolerance>
+		</specifications>
+		<amount>248356</amount>
+		<price unit="EUR">0.02</price>
+		<manufacturer>Stackpole Electronics</manufacturer>
+	</product>
+	<product id="L001" type="inductor">
+		<specifications>
+			<physicalQuantity type="inductance">
+				<value>1</value>
+				<exponent>-3</exponent>
+				<unit>H</unit>
+			</physicalQuantity>
+			<tolerance unit="%">10</tolerance>
+		</specifications>
+		<amount>587276</amount>
+		<price unit="EUR">0.14</price>
+		<manufacturer>Taiyo Yuden</manufacturer>
+	</product>
+	<product id="L002" type="inductor">
+		<specifications>
+			<physicalQuantity type="inductancance">
+				<value>10</value>
+				<exponent>-6</exponent>
+				<unit>H</unit>
+			</physicalQuantity>
+			<tolerance unit="%">10</tolerance>
+		</specifications>
+		<amount>35313</amount>
+		<price unit="EUR">0.39</price>
+		<manufacturer>Murata Power Solutions</manufacturer>
+	</product>
+	<product id="C001" type="capacitor">
+		<specifications>
+			<physicalQuantity type="capacity">
+				<value>1</value>
+				<exponent>-6</exponent>
+				<unit>F</unit>
+			</physicalQuantity>
+			<tolerance unit="%">10</tolerance>
+		</specifications>
+		<amount>20751398</amount>
+		<price unit="EUR">0.01</price>
+		<manufacturer>Taiyo Yuden</manufacturer>
+	</product>
+	<product id="C002" type="capacitor">
+		<specifications>
+			<physicalQuantity type="capacity">
+				<value>10</value>
+				<exponent>-6</exponent>
+				<unit>F</unit>
+			</physicalQuantity>
+			<tolerance unit="%">20</tolerance>
+		</specifications>
+		<amount>5505705</amount>
+		<price unit="EUR">0.03</price>
+		<manufacturer>Samsung Electro-Mechanics</manufacturer>
+	</product>
+	<product id="D001" type="diode" subtype="rectifier">
+		<specifications>
+			<physicalQuantity type="forward voltage">
+				<value>715</value>
+				<exponent>-3</exponent>
+				<unit>V</unit>
+			</physicalQuantity>
+			<physicalQuantity type="reverse voltage">
+				<value>100</value>
+				<exponent>0</exponent>
+				<unit>V</unit>
+			</physicalQuantity>
+		</specifications>
+		<amount>1061476</amount>
+		<price unit="EUR">0.05</price>
+		<manufacturer>Micro Commercial Components</manufacturer>
+	</product>
+	<product id="D002" type="diode" subtype="schottky">
+		<specifications>
+			<physicalQuantity type="forward voltage">
+				<value>320</value>
+				<exponent>-3</exponent>
+				<unit>V</unit>
+			</physicalQuantity>
+			<physicalQuantity type="reverse voltage">
+				<value>30</value>
+				<exponent>0</exponent>
+				<unit>V</unit>
+			</physicalQuantity>
+		</specifications>
+		<amount>154624</amount>
+		<price unit="EUR">0.04</price>
+		<manufacturer>Diodes Incorporated</manufacturer>
+	</product>
+</products>
