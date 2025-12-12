@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsl:stylesheet 
+    version="1.0" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:fo="http://www.w3.org/1999/XSL/Format"
+    xmlns:p="http://www.electronics.com/products">
+
+    <xsl:output method="xml" indent="yes"/>
+
+    <xsl:template match="/">
+        <fo:root>
+            <fo:layout-master-set>
+                <fo:simple-page-master master-name="A4"
+                    page-height="29.7cm"
+                    page-width="21cm"
+                    margin="1.5cm"
+                    font-family="DejaVu Sans"
+    				font-size="12pt">
+                    <fo:region-body margin="1cm"/>
+                </fo:simple-page-master>
+            </fo:layout-master-set>
+
+            <fo:page-sequence master-reference="A4">
+            	<fo:flow flow-name="xsl-region-body">
+                 	<fo:block font-size="18pt" font-weight="bold" space-after="0.5cm">
+			            Welcome on the product page
+			        </fo:block>
+			        
+			        <fo:block font-size="14pt" font-weight="bold" space-before="0.5cm" space-after="0.3cm">
+			            You can find our products here:
+			        </fo:block>
+			        <!--fo:block space-after="0.7cm"/-->
+		        
+                    <xsl:apply-templates select="p:products"/>
+                </fo:flow>
+            </fo:page-sequence>
+        </fo:root>
+    </xsl:template>
+
+
+    <xsl:template match="p:products">
+        <fo:block font-size="14pt" font-weight="bold" space-after="6pt">Resistors</fo:block>
+        <fo:table table-layout="fixed" width="100%" border-collapse="collapse">
+            <fo:table-header>
+                <fo:table-row>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>ID</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Resistance</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Tolerance</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Amount</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Price</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Manufacturer</fo:block></fo:table-cell>
+                </fo:table-row>
+            </fo:table-header>
+
+            <fo:table-body>
+                <xsl:apply-templates select="p:product[@type='resistor']"/>
+            </fo:table-body>
+        </fo:table>
+        
+        <fo:block space-after="0.7cm"/>
+
+
+        <fo:block font-size="14pt" font-weight="bold" space-after="6pt">Inductors</fo:block>
+
+        <fo:table table-layout="fixed" width="100%" border-collapse="collapse">
+            <fo:table-header>
+                <fo:table-row>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>ID</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Inductance</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Tolerance</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Amount</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Price</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Manufacturer</fo:block></fo:table-cell>
+                </fo:table-row>
+            </fo:table-header>
+
+            <fo:table-body>
+                <xsl:apply-templates select="p:product[@type='inductor']"/>
+            </fo:table-body>
+        </fo:table>
+        
+        <fo:block space-after="0.7cm"/>
+
+
+        <fo:block font-size="14pt" font-weight="bold" space-after="6pt">Capacitors</fo:block>
+
+        <fo:table table-layout="fixed" width="100%" border-collapse="collapse">
+            <fo:table-header>
+                <fo:table-row>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>ID</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Capacitance</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Tolerance</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Amount</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Price</fo:block></fo:table-cell>
+                    <fo:table-cell border="0.5pt solid black"><fo:block>Manufacturer</fo:block></fo:table-cell>
+                </fo:table-row>
+            </fo:table-header>
+
+            <fo:table-body>
+                <xsl:apply-templates select="p:product[@type='capacitor']"/>
+            </fo:table-body>
+        </fo:table>
+        
+        <fo:block space-after="0.7cm"/>
+        
+        
+        <fo:block font-size="14pt" font-weight="bold" space-after="6pt">Diodes</fo:block>
+
+		<fo:table table-layout="fixed" width="100%" border-collapse="collapse">
+		    <fo:table-column column-width="8%"/>  <!-- ID -->
+		    <fo:table-column column-width="11%"/>  <!-- Subtype -->
+		    <fo:table-column column-width="10%"/>  <!-- Forward Voltage -->
+		    <fo:table-column column-width="12%"/>  <!-- Forward Tolerance -->
+		    <fo:table-column column-width="10%"/>  <!-- Reverse Voltage -->
+		    <fo:table-column column-width="12%"/>  <!-- Reverse Tolerance -->
+		    <fo:table-column column-width="11%"/>  <!-- Amount -->
+		    <fo:table-column column-width="9%"/>  <!-- Price -->
+		    <fo:table-column column-width="17%"/>  <!-- Manufacturer -->
+		    <fo:table-header>
+		        <fo:table-row>
+		            <fo:table-cell border="0.5pt solid black"><fo:block>ID</fo:block></fo:table-cell>
+		            <fo:table-cell border="0.5pt solid black"><fo:block>Subtype</fo:block></fo:table-cell>
+		            <fo:table-cell border="0.5pt solid black"><fo:block>Forward Voltage</fo:block></fo:table-cell>
+		            <fo:table-cell border="0.5pt solid black"><fo:block>Forward Tolerance</fo:block></fo:table-cell>
+		            <fo:table-cell border="0.5pt solid black"><fo:block>Reverse Voltage</fo:block></fo:table-cell>
+		            <fo:table-cell border="0.5pt solid black"><fo:block>Reverse Tolerance</fo:block></fo:table-cell>
+		            <fo:table-cell border="0.5pt solid black"><fo:block>Amount</fo:block></fo:table-cell>
+		            <fo:table-cell border="0.5pt solid black"><fo:block>Price</fo:block></fo:table-cell>
+		            <fo:table-cell border="0.5pt solid black"><fo:block>Manufacturer</fo:block></fo:table-cell>
+		        </fo:table-row>
+		    </fo:table-header>
+		    <fo:table-body>
+		        <xsl:apply-templates select="p:product[@type='diode']"/>
+		    </fo:table-body>
+		</fo:table>
+    </xsl:template>
+
+
+    <xsl:template match="p:product[@type='resistor'] | p:product[@type='inductor'] | p:product[@type='capacitor']">
+        <fo:table-row>
+            <fo:table-cell border="0.5pt solid black">
+                <fo:block><xsl:value-of select="@id"/></fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="0.5pt solid black">
+                <fo:block><xsl:apply-templates select="*[1]"/></fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="0.5pt solid black">
+                <fo:block>
+                    <xsl:value-of select="p:tolerance"/>
+                    <xsl:text> </xsl:text>
+                    <xsl:value-of select="p:tolerance/@unit"/>
+                </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="0.5pt solid black">
+                <fo:block><xsl:value-of select="p:amount"/></fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="0.5pt solid black">
+                <fo:block><xsl:value-of select="p:price"/> €</fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="0.5pt solid black">
+                <fo:block><xsl:value-of select="p:manufacturer"/></fo:block>
+            </fo:table-cell>
+        </fo:table-row>   
+    </xsl:template>
+    
+    <xsl:template match="p:product[@type='diode']">
+	    <fo:table-row>
+	        <fo:table-cell border="0.5pt solid black"><fo:block><xsl:value-of select="@id"/></fo:block></fo:table-cell>
+	        <fo:table-cell border="0.5pt solid black">
+	            <fo:block>
+	                <xsl:value-of select="concat(translate(substring(@subtype,1,1),
+	                                'abcdefghijklmnopqrstuvwxyz',
+	                                'ABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+	                                substring(@subtype,2))"/>
+	            </fo:block>
+	        </fo:table-cell>
+	        <fo:table-cell border="0.5pt solid black"><fo:block><xsl:apply-templates select="p:forwardVoltage"/></fo:block></fo:table-cell>
+	        <fo:table-cell border="0.5pt solid black"><fo:block>
+	            <xsl:value-of select="p:forwardVoltage/p:tolerance"/>
+	            <xsl:text> </xsl:text>
+	            <xsl:value-of select="p:forwardVoltage/p:tolerance/@unit"/>
+	        </fo:block></fo:table-cell>
+	        <fo:table-cell border="0.5pt solid black"><fo:block><xsl:apply-templates select="p:reverseVoltage"/></fo:block></fo:table-cell>
+	        <fo:table-cell border="0.5pt solid black"><fo:block>
+	            <xsl:value-of select="p:reverseVoltage/p:tolerance"/>
+	            <xsl:text> </xsl:text>
+	            <xsl:value-of select="p:reverseVoltage/p:tolerance/@unit"/>
+	        </fo:block></fo:table-cell>
+	        <fo:table-cell border="0.5pt solid black"><fo:block><xsl:value-of select="p:amount"/></fo:block></fo:table-cell>
+	        <fo:table-cell border="0.5pt solid black"><fo:block><xsl:value-of select="p:price"/> €</fo:block></fo:table-cell>
+	        <fo:table-cell border="0.5pt solid black"><fo:block><xsl:value-of select="p:manufacturer"/></fo:block></fo:table-cell>
+	    </fo:table-row>
+	</xsl:template>
+
+
+    <xsl:template match="
+        p:product[@type='resistor']/p:resistance |
+        p:product[@type='inductor']/p:inductance |
+        p:product[@type='capacitor']/p:capacitance |
+        p:product[@type='diode']/p:forwardVoltage |
+    	p:product[@type='diode']/p:reverseVoltage">
+
+        <fo:inline>
+	        <xsl:value-of select="p:value"/>           <!-- Zahl -->
+	        <xsl:text> </xsl:text>
+	        <xsl:apply-templates select="p:exponent"/> <!-- Vorsilbe wie k, M, m -->
+	        <fo:inline width="0.2em"/>            
+    	    <xsl:choose>
+	            <xsl:when test="p:unit = 'Ω'">
+	                <fo:inline baseline-shift="0.1em">
+	                    <xsl:value-of select="p:unit"/>
+	                </fo:inline>
+	            </xsl:when>
+	            <xsl:otherwise>
+	                <xsl:value-of select="p:unit"/>
+	            </xsl:otherwise>
+        	</xsl:choose>
+		</fo:inline>
+    </xsl:template>
+
+
+    <xsl:template match="p:exponent">
+        <xsl:if test=". = -12"> p</xsl:if>
+        <xsl:if test=". = -9"> n</xsl:if>
+        <xsl:if test=". = -6"> &#181;</xsl:if>
+        <xsl:if test=". = -3"> m</xsl:if>
+        <xsl:if test=". = 0"> </xsl:if> 
+        <xsl:if test=". = 3"> k</xsl:if>
+        <xsl:if test=". = 6"> k</xsl:if>
+        <xsl:if test=". = 9"> M</xsl:if>
+    </xsl:template>
+
+</xsl:stylesheet>
