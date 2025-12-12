@@ -11,7 +11,7 @@
             	<title>Product page</title>
             </head>
             <body>
-                <h1>Welcome on the product page</h1>
+                <h1>Welcome to the product page</h1>
                 <p>You can find our products here:</p>
                 <xsl:apply-templates select="p:products"/>
             </body>
