@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:products="http://www.electronics.com/products"
+	targetNamespace="http://www.electronics.com/products"
+	elementFormDefault="qualified">
+	
+	
+	<element name="products">
+		<complexType>
+			<sequence>
+				<element name="product" minOccurs="1" maxOccurs="unbounded">
+					<complexType>
+						<sequence>
+							<choice minOccurs="1" maxOccurs="2">
+								<element name="resistance" type="products:ResistanceType"/>
+								<element name="inductance" type="products:InductanceType"/>
+								<element name="capacitance" type="products:CapacitanceType"/>
+								<element name="forwardVoltage" type="products:ForwardVoltageType"/>
+								<element name="reverseVoltage" type="products:ReverseVoltageType"/>
+							</choice>
+							<element name="amount" type="unsignedInt"/>
+							<element name="price" type="products:PriceType"/>
+							<element name="manufacturer" type="string"/>
+						</sequence>
+						<attributeGroup ref="products:ProductAttributes"/>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<complexType name="ResistanceType">
+		<sequence>
+			<element name="value" type="float"/>
+			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="unit" type="string" fixed="&#8486;"/>
+			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
+		</sequence>
+		<attribute name="type" type="string" fixed="resistance"/>
+	</complexType>
+	
+	<complexType name="InductanceType">
+		<sequence>
+			<element name="value" type="float"/>
+			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="unit" type="string" fixed="H"/>
+			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
+		</sequence>
+		<attribute name="type" type="string" fixed="inductance"/>
+	</complexType>
+	
+	<complexType name="CapacitanceType">
+		<sequence>
+			<element name="value" type="float"/>
+			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="unit" type="string" fixed="F"/>
+			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
+		</sequence>
+		<attribute name="type" type="string" fixed="capacitance"/>
+	</complexType>
+	
+	<complexType name="ForwardVoltageType">
+		<sequence>
+			<element name="value" type="float"/>
+			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="unit" type="string" fixed="V"/>
+			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
+		</sequence>
+		<attribute name="type" type="string" fixed="forward voltage"/>
+	</complexType>
+	
+	<complexType name="ReverseVoltageType">
+		<sequence>
+			<element name="value" type="float"/>
+			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="unit" type="string" fixed="V"/>
+			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
+		</sequence>
+		<attribute name="type" type="string" fixed="reverse voltage"/>
+	</complexType>
+	
+	
+	<complexType name="ToleranceType">
+		<simpleContent>
+			<extension base="float">
+				<attribute name="unit" type="string" default="%" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="PriceType">
+		<simpleContent>
+			<extension base="float">
+				<attribute name="unit" type="string" default="EUR" use="optional"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+	
+	<attributeGroup name="ProductAttributes">
+		<attribute name="id" type="ID" use="required"/>
+		<attribute name="type" type="string" use="required"/>
+		<attribute name="subtype" type="string" use="optional"/>
+	</attributeGroup>
+
+</schema>
