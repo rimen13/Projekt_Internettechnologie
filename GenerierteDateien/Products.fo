@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:p="http://www.electronics.com/products">
+   <fo:layout-master-set>
+      <fo:simple-page-master master-name="A4" page-height="29.7cm" page-width="21cm" margin="1.5cm" font-family="DejaVu Sans" font-size="12pt">
+         <fo:region-body margin="1cm"/>
+      </fo:simple-page-master>
+   </fo:layout-master-set>
+   <fo:page-sequence master-reference="A4">
+      <fo:flow flow-name="xsl-region-body">
+         <fo:block font-size="18pt" font-weight="bold" space-after="0.5cm">
+                        Welcome on the product page
+                    </fo:block>
+         <fo:block font-size="14pt" font-weight="bold" space-before="0.5cm" space-after="0.3cm">
+                        You can find our products here:
+                    </fo:block>
+         <fo:block font-size="14pt" font-weight="bold" space-after="6pt">Resistors</fo:block>
+         <fo:table table-layout="fixed" width="100%" border-collapse="collapse">
+            <fo:table-header>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>ID</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Resistance</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Tolerance</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Amount</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Price</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Manufacturer</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>R001</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>1 k<fo:inline baseline-shift="0.145em">Ω</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>5 %</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>411527</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>0.02 €
+                </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Stackpole Electronics</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>R002</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>10 k<fo:inline baseline-shift="0.145em">Ω</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>5 %</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>205024</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>0.02 €
+                </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Stackpole Electronics</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>R003</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>100 k<fo:inline baseline-shift="0.145em">Ω</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>5 %</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>248356</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>0.02 €
+                </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Stackpole Electronics</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:block space-after="0.7cm"/>
+         <fo:block font-size="14pt" font-weight="bold" space-after="6pt">Inductors</fo:block>
+         <fo:table table-layout="fixed" width="100%" border-collapse="collapse">
+            <fo:table-header>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>ID</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Inductance</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Tolerance</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Amount</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Price</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Manufacturer</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>L001</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>1 m<fo:inline>H</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>10 %</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>587276</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>0.14 €
+                </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Taiyo Yuden</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>L002</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>10 µ<fo:inline>H</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>10 %</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>35313</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>0.39 €
+                </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Murata Power Solutions</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:block space-after="0.7cm"/>
+         <fo:block font-size="14pt" font-weight="bold" space-after="6pt">Capacitors</fo:block>
+         <fo:table table-layout="fixed" width="100%" border-collapse="collapse">
+            <fo:table-header>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>ID</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Capacitance</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Tolerance</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Amount</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Price</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Manufacturer</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>C001</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>1 µ<fo:inline>F</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>10 %</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>20751398</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>0.01 €
+                </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Taiyo Yuden</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>C002</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>10 µ<fo:inline>F</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>20 %</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>5505705</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>0.03 €
+                </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Samsung Electro-Mechanics</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+         <fo:block space-after="0.7cm"/>
+         <fo:block font-size="14pt" font-weight="bold" space-after="6pt">Diodes</fo:block>
+         <fo:table table-layout="fixed" width="100%" border-collapse="collapse">
+            <fo:table-column column-width="8%"/>
+            <fo:table-column column-width="11%"/>
+            <fo:table-column column-width="10%"/>
+            <fo:table-column column-width="12%"/>
+            <fo:table-column column-width="10%"/>
+            <fo:table-column column-width="12%"/>
+            <fo:table-column column-width="11%"/>
+            <fo:table-column column-width="9%"/>
+            <fo:table-column column-width="17%"/>
+            <fo:table-header>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>ID</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Subtype</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Forward Voltage</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Forward Tolerance</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Reverse Voltage</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Reverse Tolerance</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Amount</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Price</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Manufacturer</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-header>
+            <fo:table-body>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>D001</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Rectifier</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>715 m<fo:inline>V</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>-</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>100 <fo:inline>V</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>-</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>1061476</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>0.05 €</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Micro Commercial Components</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+               <fo:table-row>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>D002</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Schottky</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>320 m<fo:inline>V</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>-</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>
+                        <fo:inline>30 <fo:inline>V</fo:inline>
+                        </fo:inline>
+                     </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>-</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>154624</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>0.04 €</fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell border="0.5pt solid black">
+                     <fo:block>Diodes Incorporated</fo:block>
+                  </fo:table-cell>
+               </fo:table-row>
+            </fo:table-body>
+         </fo:table>
+      </fo:flow>
+   </fo:page-sequence>
+</fo:root>
