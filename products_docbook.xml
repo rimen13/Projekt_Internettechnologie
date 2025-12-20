@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.0//EN"
+  "http://www.oasis-open.org/docbook/xml/4.0/docbookx.dtd">
+
+<article>
+    <title>Welcome on the product page</title>
+    <para role="intro" importance="high">You can find our products here:</para>
+
+    <!-- Resistors -->
+    <para role="tabletitle" importance="high">Resistors</para>
+    <informaltable frame="border">
+        <tgroup cols="6">
+            <colspec colnum="1" colwidth="1*"/>
+            <colspec colnum="2" colwidth="1*"/>
+            <colspec colnum="3" colwidth="1*"/>
+            <colspec colnum="4" colwidth="1*"/>
+            <colspec colnum="5" colwidth="1*"/>
+            <colspec colnum="6" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry align="left">ID</entry>
+                    <entry align="left">Resistance</entry>
+                    <entry align="left">Tolerance</entry>
+                    <entry align="left">Amount</entry>
+                    <entry align="left">Price</entry>
+                    <entry align="left">Manufacturer</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry align="left">R001</entry>
+                    <entry align="left">1 kΩ</entry>
+                    <entry align="left">5 %</entry>
+                    <entry align="left">411527</entry>
+                    <entry align="left">0.02 €</entry>
+                    <entry align="left">Stackpole Electronics</entry>
+                </row>
+                <row>
+                    <entry align="left">R002</entry>
+                    <entry align="left">10 kΩ</entry>
+                    <entry align="left">5 %</entry>
+                    <entry align="left">205024</entry>
+                    <entry align="left">0.02 €</entry>
+                    <entry align="left">Stackpole Electronics</entry>
+                </row>
+                <row>
+                    <entry align="left">R003</entry>
+                    <entry align="left">100 kΩ</entry>
+                    <entry align="left">5 %</entry>
+                    <entry align="left">248356</entry>
+                    <entry align="left">0.02 €</entry>
+                    <entry align="left">Stackpole Electronics</entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+
+    <!-- Inductors -->
+    <para role="tabletitle" importance="high">Inductors</para>
+    <informaltable frame="border">
+        <tgroup cols="6">
+            <colspec colnum="1" colwidth="1*"/>
+            <colspec colnum="2" colwidth="1*"/>
+            <colspec colnum="3" colwidth="1*"/>
+            <colspec colnum="4" colwidth="1*"/>
+            <colspec colnum="5" colwidth="1*"/>
+            <colspec colnum="6" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry align="left">ID</entry>
+                    <entry align="left">Inductance</entry>
+                    <entry align="left">Tolerance</entry>
+                    <entry align="left">Amount</entry>
+                    <entry align="left">Price</entry>
+                    <entry align="left">Manufacturer</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry align="left">L001</entry>
+                    <entry align="left">1 mH</entry>
+                    <entry align="left">10 %</entry>
+                    <entry align="left">587276</entry>
+                    <entry align="left">0.14 €</entry>
+                    <entry align="left">Taiyo Yuden</entry>
+                </row>
+                <row>
+                    <entry align="left">L002</entry>
+                    <entry align="left">10 μH</entry>
+                    <entry align="left">10 %</entry>
+                    <entry align="left">35313</entry>
+                    <entry align="left">0.39 €</entry>
+                    <entry align="left">Murata Power Solutions</entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+
+    <!-- Capacitors -->
+    <para role="tabletitle" importance="high">Capacitors</para>
+    <informaltable frame="border">
+        <tgroup cols="6">
+            <colspec colnum="1" colwidth="1*"/>
+            <colspec colnum="2" colwidth="1*"/>
+            <colspec colnum="3" colwidth="1*"/>
+            <colspec colnum="4" colwidth="1*"/>
+            <colspec colnum="5" colwidth="1*"/>
+            <colspec colnum="6" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry align="left">ID</entry>
+                    <entry align="left">Capacitance</entry>
+                    <entry align="left">Tolerance</entry>
+                    <entry align="left">Amount</entry>
+                    <entry align="left">Price</entry>
+                    <entry align="left">Manufacturer</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry align="left">C001</entry>
+                    <entry align="left">1 μF</entry>
+                    <entry align="left">10 %</entry>
+                    <entry align="left">20751398</entry>
+                    <entry align="left">0.01 €</entry>
+                    <entry align="left">Taiyo Yuden</entry>
+                </row>
+                <row>
+                    <entry align="left">C002</entry>
+                    <entry align="left">10 μF</entry>
+                    <entry align="left">20 %</entry>
+                    <entry align="left">5505705</entry>
+                    <entry align="left">0.03 €</entry>
+                    <entry align="left">Samsung Electro-Mechanics</entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+
+    <!-- Diodes -->
+    <para role="tabletitle" importance="high">Diodes</para>
+    <informaltable frame="border">
+        <tgroup cols="7">
+            <colspec colnum="1" colwidth="1*"/>
+            <colspec colnum="2" colwidth="1*"/>
+            <colspec colnum="3" colwidth="1*"/>
+            <colspec colnum="4" colwidth="1*"/>
+            <colspec colnum="5" colwidth="1*"/>
+            <colspec colnum="6" colwidth="1*"/>
+            <colspec colnum="7" colwidth="2*"/>
+            <thead>
+                <row>
+                    <entry align="left">ID</entry>
+                    <entry align="left">Subtype</entry>
+                    <entry align="left">Forward Voltage</entry>
+                    <entry align="left">Reverse Voltage</entry>
+                    <entry align="left">Amount</entry>
+                    <entry align="left">Price</entry>
+                    <entry align="left">Manufacturer</entry>
+                </row>
+            </thead>
+            <tbody>
+                <row>
+                    <entry align="left">D001</entry>
+                    <entry align="left">Rectifier</entry>
+                    <entry align="left">715 mV</entry>
+                    <entry align="left">100 V</entry>
+                    <entry align="left">1061476</entry>
+                    <entry align="left">0.05 €</entry>
+                    <entry align="left">Micro Commercial Components</entry>
+                </row>
+                <row>
+                    <entry align="left">D002</entry>
+                    <entry align="left">Schottky</entry>
+                    <entry align="left">320 mV</entry>
+                    <entry align="left">30 V</entry>
+                    <entry align="left">154624</entry>
+                    <entry align="left">0.04 €</entry>
+                    <entry align="left">Diodes Incorporated</entry>
+                </row>
+            </tbody>
+        </tgroup>
+    </informaltable>
+
+</article>
