@@ -6,4 +6,3 @@ Products.fo      Zwischenformat mit XSL-FO für PDF-Erstellung
 Products.pdf     Enddokument im PDF-Format
 Products2.fo     Zweites XSL-FO-Dokument für alternative PDF-Ausgabe
 Products2.pdf    Zweite PDF-Ausgabe basierend auf Products2.fo
-
