@@ -3,7 +3,11 @@
 	<xs:element name="product">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="editix:specification" maxOccurs="unbounded"/>
+				<xs:element ref="editix:forwardVoltage" minOccurs="0"/>
+				<xs:element ref="editix:reverseVoltage" minOccurs="0"/>
+				<xs:element ref="editix:capacitance" minOccurs="0"/>
+				<xs:element ref="editix:inductance" minOccurs="0"/>
+				<xs:element ref="editix:resistance" minOccurs="0"/>
 				<xs:element ref="editix:amount"/>
 				<xs:element ref="editix:price"/>
 				<xs:element ref="editix:manufacturer"/>
@@ -13,36 +17,35 @@
 			<xs:attribute name="subtype" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="unit" type="xs:string"/>
 	<xs:element name="amount" type="xs:string"/>
-	<xs:element name="price">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="unit" type="xs:double" use="required"/>
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="specification">
+	<xs:element name="inductance">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="editix:value"/>
-				<xs:element ref="editix:exponent" minOccurs="0"/>
+				<xs:element ref="editix:exponent"/>
+				<xs:element ref="editix:unit"/>
+				<xs:element ref="editix:tolerance"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="capacitance">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="editix:value"/>
+				<xs:element ref="editix:exponent"/>
 				<xs:element ref="editix:unit"/>
 				<xs:element ref="editix:tolerance" minOccurs="0"/>
 			</xs:sequence>
-			<xs:attribute name="type" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="value" type="xs:string"/>
-	<xs:element name="tolerance">
+	<xs:element name="resistance">
 		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="unit" type="xs:string" use="required"/>
-				</xs:extension>
-			</xs:simpleContent>
+			<xs:sequence>
+				<xs:element ref="editix:value"/>
+				<xs:element ref="editix:exponent"/>
+				<xs:element ref="editix:unit"/>
+				<xs:element ref="editix:tolerance"/>
+			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="products">
@@ -52,6 +55,44 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="exponent" type="xs:string"/>
 	<xs:element name="manufacturer" type="xs:string"/>
+	<xs:element name="unit" type="xs:string"/>
+	<xs:element name="price">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="unit" type="xs:decimal" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="reverseVoltage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="editix:value"/>
+				<xs:element ref="editix:exponent" minOccurs="0"/>
+				<xs:element ref="editix:unit"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="forwardVoltage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="editix:value"/>
+				<xs:element ref="editix:exponent"/>
+				<xs:element ref="editix:unit"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="value" type="xs:string"/>
+	<xs:element name="tolerance">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="unit" type="xs:decimal" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="exponent" type="xs:string"/>
 </xs:schema>
