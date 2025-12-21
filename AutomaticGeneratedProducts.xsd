@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.electronics.com/products" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:editix="http://www.electronics.com/products">
+	<xs:element name="product">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="editix:specification" maxOccurs="unbounded"/>
+				<xs:element ref="editix:amount"/>
+				<xs:element ref="editix:price"/>
+				<xs:element ref="editix:manufacturer"/>
+			</xs:sequence>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="type" type="xs:string" use="required"/>
+			<xs:attribute name="subtype" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="unit" type="xs:string"/>
+	<xs:element name="amount" type="xs:string"/>
+	<xs:element name="price">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="unit" type="xs:double" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="specification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="editix:value"/>
+				<xs:element ref="editix:exponent" minOccurs="0"/>
+				<xs:element ref="editix:unit"/>
+				<xs:element ref="editix:tolerance" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="value" type="xs:string"/>
+	<xs:element name="tolerance">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="unit" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="products">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="editix:product" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="exponent" type="xs:string"/>
+	<xs:element name="manufacturer" type="xs:string"/>
+</xs:schema>
