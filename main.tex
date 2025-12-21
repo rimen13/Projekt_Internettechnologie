@@ -296,14 +296,26 @@ at (\filewidth/2,\fileheight/2) {XSL--FO};
 
 \section{Transformationen}
 
+\subsection{XSLT von XML in HTML}
+Um die XML in eine HTML transformieren zu können, wurde Products.xslt erstellt. Die tabellenförmige Ausgabe wurde getrennt für Widerstände, Spulen und Kondensatoren sowie Dioden vorgenommen, da für erstere jeweils eine physikalische Größe angegeben ist, für letztere zwei physiklische Größen und der Untertyp.
 
+Die physikalischen Größen selbst wurden mit einem gemeinsamen Template ausgewertet, da alle einen Werte und eine Einheit sowie einen optionalen Exponenten und eine optionale Toleranz aufweisen. Mit einer xsl:when-Schleife wurde sichergestellt, dass bei Abwesenheit einer Toleranz dieses Feld mit einem Bindestrich gefüllt wird. Da das Feld für die physikalische Größe in der entsprechenden Tabelle aber auch ohne einen explizit vorgegebenen Exponenten korrekt ausgefüllt wird und alle anderen Angaben in der Tabelle obligatorisch sind, ist dieses Vorgehen nur für die Toleranz notwendig.
 
+Im Allgemeinen wurden die Templates so generisch wie möglich erstellt, um eine hohe Flexibilität für eventuelle Veränderungen zu gewährleisten.
 
+\subsection{FOP-Transformation}
+Für die FOP-Transformation wurde hauptsächlich die XSLT für den HTML-Output wiederverwendet, da die gleichen Informationen mittels XPath herausgesucht wurden. Es wurde lediglich die HTML-Syntax durch FO-Syntax ersetzt, zusätzlich wurde ein Master-Layout definiert.
 
+Der einzige Unterschied besteht in der Behandlung des $\Omega$. Dieses musste im Vergleich zur HTML und zu den anderen Zeichen des Dokuments immer um 0.145 em nach oben verschoben werden, da es sonst eine halbe Zeile zu tief steht.
+
+\subsection{DocBook-Transformation}
+Die DocBook-Transformation ist nicht so flexibel wie die oberen Ansätze. Durch die Verwendung von XML kann nur die vorgegebene Datei transformiert werden. Auch hier wurde für jede Produktfamilie eine Tabelle erstellt, die jedoch mit vordefinierten Werten gefüllt ist.
+
+\subsection{Vergleich der Transformationen}
+Die erste Transformation wandelt eine XML in ein HTML-Dokument, wohingegen die zweite Transformation ein FO erzeugt, das als pdf gerendert werden kann und die DocBook-Transformation ...
+
+Zudem sind die ersten beiden Transformationen sehr generisch -- mit ihnen kann man immer das angestrebte Output-Dokument erzeugten, falls die Input-XML der in \autoref{sec:Validierung} erläuterten Anforderungen genügt. Die Datei für die DocBook-Transofrmation muss hingegen für jede XML neu entworfen werden, da dieses Verfahren nicht so allgemein ist wie die beiden anderen.
 \section{Programmierung}
-
-
-
 
 
 \section{Zusätzliche Informationen}
