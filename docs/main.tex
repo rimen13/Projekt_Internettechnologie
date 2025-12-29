@@ -35,6 +35,8 @@ twoside = false
 \usepackage{setspace}
 \onehalfspacing
 
+\usepackage{hyperref}
+
 % -------------------------------------------------
 % Mathe, Grafiken, Tabellen
 % -------------------------------------------------
@@ -43,6 +45,7 @@ twoside = false
 \usepackage{booktabs}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{float}
 
 % -------------------------------------------------
 % Kopf- und Fußzeilen (KOMA-konform, einheitlich)
@@ -125,7 +128,9 @@ twoside = false
 % Hauptteil
 % =================================================
 
-\section{Zielstellung}
+
+\section{Projektübersicht}
+\subsection{Zielstellung}
 
 Als Grundlage dieses Projekts dient das Anlegen eines XML-Datensatzes. Dieser sollte aus mehreren Objekten mit jeweils mindestens einem Attribut und einer Datensequenz bestehen. Die daran anschließende Aufgabe besteht im Erstellen einer XSD-Schemadatei. Damit kann validiert werden, ob die gegebene XML-Datei die gewünschte Struktur erfüllt und alle benötigten Angaben gemacht wurden. Darüber hinaus soll eine in \textit{editiX} automatisch generierte XSD-Schemadatei erstellt werden.
 
@@ -135,7 +140,7 @@ Der dritte Aufgabenteil setzt sich mit der XML-Programmierung auseinander. Dabei
 
 \enlargethispage{1\baselineskip}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[>=Stealth, thick, node distance=2.5cm and 3cm]
 
@@ -284,56 +289,73 @@ at (\filewidth/2,\fileheight/2) {XSL--FO};
 \end{figure}
 
 
+\subsection{Projektstruktur}
 
+In \autoref{tab:Dateiübersicht} sind alle Dateien dargestellt, die die Daten selbst abbilden, Transformationen ermöglichen oder Ergebnisse der Transformationen sind.
 
+\begin{table}[htbp]
+    \begin{tabular}{|l|l|}
+        \hline
+        Products.xml & XML-Datenquelle mit Produktinformationen \\ \hline
+        Products.xsd & XML-Schema zur Validierung der Produktdaten \\ \hline
+        Products.xslt & XSLT-Stylesheet zur Transformation von XML nach HTML \\ \hline
+        Products.html & Ergebnisdokument im HTML-Format \\ \hline
+        Products.xsl & XSL-FO-Stylesheet zur Erzeugung von Layout/Formatierung \\ \hline
+        Products.fo & Zwischenformat mit XSL-FO für PDF-Erstellung \\ \hline
+        Products.pdf & Enddokument im PDF-Format \\ \hline
+        %Products\_DocBook.xml & XML-Dokument im DocBook-Format \\ \hline
+        %Products2.fo & Zweites XSL-FO-Dokument für alternative PDF-Ausgabe \\ \hline
+        %Products2.pdf & Zweite PDF-Ausgabe basierend auf Products2.fo \\ \hline
+    \end{tabular}
+    \caption{Dateiübersicht}
+    \label{tab:Dateiübersicht}
+\end{table}
+
+Für dieses Projekt wurde ein GitHub-Repositorium angelegt, dass diese Dateien enthält. Es gibt ein Verzeichnis \texttt{docs} mit der Dokumentation (als tex- und pdf-Dokument). Das Verzeichnis \texttt{xml-pipeline} enthält die für \autoref{sec:Datensatz} und \autoref{sec:Transformationen} relevanten Dateien. Der Ordner \texttt{programming} beinhaltet die Dateien für \autoref{sec:Programmierung}.
 
 
 \section{Datensatz}
+\label{sec:Datensatz}
+Der Datensatz beschreibt Produkte eines fiktiven Elektronikshops.
+Er liegt als \texttt{products.xml} vor.
 
-
-
+Das zugehörige Schema befindet sich in \texttt{products.xsd}.
+Es definiert Struktur, Reihenfolge und Häufigkeit der verwendeten Elemente.
+Beim Entwurf des XSD wurde darauf geachtet, jedes Element über einen eigenen Typ zu kapseln, sodass spätere Änderungen gezielt und unabhängig vorgenommen werden können.
+Die verwendeten Datentypen wurden bewusst gewählt, um eine valide und konsistente Datenstruktur sicherzustellen.
+Standardwerte kommen dort zum Einsatz, wo Attribute fehlen, um sinnvolle und einheitliche Einstellungen zu gewährleisten.
+Feste Werte werden verwendet, um Abweichungen frühzeitig zu erkennen und als Fehler zu kennzeichnen.
 
 
 \section{Transformationen}
-
+\label{sec:Transformationen}
 \subsection{XSLT von XML in HTML}
-Um die XML in eine HTML transformieren zu können, wurde Products.xslt erstellt. Die tabellenförmige Ausgabe wurde getrennt für Widerstände, Spulen und Kondensatoren sowie Dioden vorgenommen, da für erstere jeweils eine physikalische Größe angegeben ist, für letztere zwei physiklische Größen und der Untertyp.
+Um die XML in HTML transformieren zu können, wurde \texttt{products.xslt} erstellt. Die tabellenförmige Ausgabe wurde getrennt für Widerstände, Spulen und Kondensatoren sowie für Dioden vorgenommen, da für erstere jeweils eine physikalische Größe angegeben ist, für letztere zwei physikalische Größen sowie der Untertyp.
 
-Die physikalischen Größen selbst wurden mit einem gemeinsamen Template ausgewertet, da alle einen Werte und eine Einheit sowie einen optionalen Exponenten und eine optionale Toleranz aufweisen. Mit einer xsl:when-Schleife wurde sichergestellt, dass bei Abwesenheit einer Toleranz dieses Feld mit einem Bindestrich gefüllt wird. Da das Feld für die physikalische Größe in der entsprechenden Tabelle aber auch ohne einen explizit vorgegebenen Exponenten korrekt ausgefüllt wird und alle anderen Angaben in der Tabelle obligatorisch sind, ist dieses Vorgehen nur für die Toleranz notwendig.
+Die physikalischen Größen selbst wurden mit einem gemeinsamen Template ausgewertet, da alle einen Wert und eine Einheit sowie einen optionalen Exponenten und eine optionale Toleranz aufweisen. Mit einer \texttt{xsl:when}-Abfrage wurde sichergestellt, dass bei Abwesenheit einer Toleranz dieses Feld mit einem Bindestrich gefüllt wird. Da das Feld für die physikalische Größe in der entsprechenden Tabelle jedoch auch ohne einen explizit vorgegebenen Exponenten korrekt ausgefüllt wird und alle weiteren Angaben in der Tabelle obligatorisch sind, ist dieses Vorgehen nur für die Toleranz notwendig.
 
-Im Allgemeinen wurden die Templates so generisch wie möglich erstellt, um eine hohe Flexibilität für eventuelle Veränderungen zu gewährleisten.
+Im Allgemeinen wurden die Templates so generisch wie möglich erstellt, um eine hohe Flexibilität für mögliche Veränderungen zu gewährleisten.
 
 \subsection{FOP-Transformation}
-Für die FOP-Transformation wurde hauptsächlich die XSLT für den HTML-Output wiederverwendet, da die gleichen Informationen mittels XPath herausgesucht wurden. Es wurde lediglich die HTML-Syntax durch FO-Syntax ersetzt, zusätzlich wurde ein Master-Layout definiert.
+Für die FOP-Transformation wurde hauptsächlich die XSLT für den HTML-Output wiederverwendet, da die gleichen Informationen mittels XPath ermittelt wurden. Es wurde lediglich die HTML-Syntax durch FO-Syntax ersetzt, zusätzlich wurde ein Master-Layout definiert.
 
-Der einzige Unterschied besteht in der Behandlung des $\Omega$. Dieses musste im Vergleich zur HTML und zu den anderen Zeichen des Dokuments immer um 0.145 em nach oben verschoben werden, da es sonst eine halbe Zeile zu tief steht.
+Der einzige Unterschied besteht in der Behandlung des $\Omega$. Dieses musste im Vergleich zu HTML und zu den anderen Zeichen des Dokuments stets um 0.145\,em nach oben verschoben werden, da es sonst eine halbe Zeile zu tief steht.
 
-\subsection{DocBook-Transformation}
-Die DocBook-Transformation ist nicht so flexibel wie die oberen Ansätze. Durch die Verwendung von XML kann nur die vorgegebene Datei transformiert werden. Auch hier wurde für jede Produktfamilie eine Tabelle erstellt, die jedoch mit vordefinierten Werten gefüllt ist.
+%\subsection{DocBook-Transformation}
+%Die DocBook-Transformation ist nicht so flexibel wie die vorherigen Ansätze. Durch die Verwendung von XML kann nur die jeweils vorgegebene Datei transformiert werden. Auch hier wurde für jede Produktfamilie eine Tabelle erstellt, die jedoch mit vordefinierten Werten gefüllt ist.
 
 \subsection{Vergleich der Transformationen}
-Die erste Transformation wandelt eine XML in ein HTML-Dokument, wohingegen die zweite Transformation ein FO erzeugt, das als pdf gerendert werden kann und die DocBook-Transformation ...
+Die erste Transformation wandelt eine XML in ein HTML-Dokument, wohingegen die zweite Transformation ein FO erzeugt, das als PDF gerendert werden kann.%; die DocBook-Transformation verfolgt hingegen einen stärker statischen Ansatz.
 
-Zudem sind die ersten beiden Transformationen sehr generisch -- mit ihnen kann man immer das angestrebte Output-Dokument erzeugten, falls die Input-XML der in \autoref{sec:Validierung} erläuterten Anforderungen genügt. Die Datei für die DocBook-Transofrmation muss hingegen für jede XML neu entworfen werden, da dieses Verfahren nicht so allgemein ist wie die beiden anderen.
+Zudem sind die ersten beiden Transformationen sehr generisch -- mit ihnen kann stets das angestrebte Output-Dokument erzeugt werden, sofern die Input-XML den in \autoref{sec:Datensatz} erläuterten Anforderungen genügt.% Die Datei für die DocBook-Transformation muss hingegen für jede XML neu entworfen werden, da dieses Verfahren nicht so allgemein einsetzbar ist wie die beiden anderen.
+
+
 \section{Programmierung}
+\label{sec:Programmierung}
 
 
-\section{Zusätzliche Informationen}
-
-\begin{tabular}{|l|l|}
-    \hline
-    Products.xml & XML-Datenquelle mit Produktinformationen \\ \hline
-    Products.xsd & XML-Schema zur Validierung der Produktdaten \\ \hline
-    Products.xslt & XSLT-Stylesheet zur Transformation von XML nach HTML \\ \hline
-    Products.html & Ergebnisdokument im HTML-Format \\ \hline
-    Products.xsl & XSL-FO-Stylesheet zur Erzeugung von Layout/Formatierung \\ \hline
-    Products.fo & Zwischenformat mit XSL-FO für PDF-Erstellung \\ \hline
-    Products.pdf & Enddokument im PDF-Format \\ \hline
-    Products\_DocBook.xml & XML-Dokument im DocBook-Format \\ \hline
-    Products2.fo & Zweites XSL-FO-Dokument für alternative PDF-Ausgabe \\ \hline
-    Products2.pdf & Zweite PDF-Ausgabe basierend auf Products2.fo \\ \hline
-\end{tabular}
-
+    
+\section{Quellenverzeichnis}
 
 
 \end{document}
