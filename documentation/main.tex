@@ -35,8 +35,6 @@ twoside = false
 \usepackage{setspace}
 \onehalfspacing
 
-\usepackage{hyperref}
-
 % -------------------------------------------------
 % Mathe, Grafiken, Tabellen
 % -------------------------------------------------
@@ -46,6 +44,7 @@ twoside = false
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage{hyperref}
 
 % -------------------------------------------------
 % Kopf- und Fußzeilen (KOMA-konform, einheitlich)
@@ -128,8 +127,8 @@ twoside = false
 % Hauptteil
 % =================================================
 
+\section{Projekübersicht}
 
-\section{Projektübersicht}
 \subsection{Zielstellung}
 
 Als Grundlage dieses Projekts dient das Anlegen eines XML-Datensatzes. Dieser sollte aus mehreren Objekten mit jeweils mindestens einem Attribut und einer Datensequenz bestehen. Die daran anschließende Aufgabe besteht im Erstellen einer XSD-Schemadatei. Damit kann validiert werden, ob die gegebene XML-Datei die gewünschte Struktur erfüllt und alle benötigten Angaben gemacht wurden. Darüber hinaus soll eine in \textit{editiX} automatisch generierte XSD-Schemadatei erstellt werden.
@@ -139,6 +138,154 @@ Der zweite Teil des Projekts befasst sich mit der Transformation der XML-Datei. 
 Der dritte Aufgabenteil setzt sich mit der XML-Programmierung auseinander. Dabei soll eine Apllikation erstellt werden, welche die Validierung, Abfrage und Transformation der XML-Datei ermöglichen soll.
 
 \enlargethispage{1\baselineskip}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, thick, node distance=2.5cm and 3cm]
+
+% ---------------- Parameter ----------------
+\def\filewidth{1.8}
+\def\fileheight{2.7}
+\def\fold{0.5}
+\def\scale{1}
+
+% ---------------- XML ----------------
+\node (xml) at (0,0) {
+\begin{tikzpicture}[x=\scale cm,y=\scale cm]
+\draw[fill=white]
+(0,0) -- (0,\fileheight) --
+(\filewidth-\fold,\fileheight) --
+(\filewidth,\fileheight-\fold) --
+(\filewidth,0) -- cycle;
+\draw[fill=white]
+(\filewidth-\fold,\fileheight) --
+(\filewidth-\fold,\fileheight-\fold) --
+(\filewidth,\fileheight-\fold) -- cycle;
+\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
+\node[anchor=center, text width=\filewidth cm, align=center]
+at (\filewidth/2,\fileheight/2) {XML};
+\end{tikzpicture}
+};
+
+% ---------------- XSD ----------------
+\node (xsd) [below=5cm of xml] {
+\begin{tikzpicture}[x=\scale cm,y=\scale cm]
+\draw[fill=white]
+(0,0) -- (0,\fileheight) --
+(\filewidth-\fold,\fileheight) --
+(\filewidth,\fileheight-\fold) --
+(\filewidth,0) -- cycle;
+\draw[fill=white]
+(\filewidth-\fold,\fileheight) --
+(\filewidth-\fold,\fileheight-\fold) --
+(\filewidth,\fileheight-\fold) -- cycle;
+\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
+\node[anchor=center, text width=\filewidth cm, align=center]
+at (\filewidth/2,\fileheight/2) {XSD};
+\end{tikzpicture}
+};
+
+\draw[<->] (xml) -- (xsd);
+
+% ---------------- XSLT ----------------
+\node (xslt) [right=of xml] {
+\begin{tikzpicture}[x=\scale cm,y=\scale cm]
+\draw[fill=white]
+(0,0) -- (0,\fileheight) --
+(\filewidth-\fold,\fileheight) --
+(\filewidth,\fileheight-\fold) --
+(\filewidth,0) -- cycle;
+\draw[fill=white]
+(\filewidth-\fold,\fileheight) --
+(\filewidth-\fold,\fileheight-\fold) --
+(\filewidth,\fileheight-\fold) -- cycle;
+\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
+\node[anchor=center, text width=\filewidth cm, align=center]
+at (\filewidth/2,\fileheight/2) {XSLT};
+\end{tikzpicture}
+};
+
+% ---------------- DocBook ----------------
+\node (docbook) [below=5cm of xslt] {
+\begin{tikzpicture}[x=\scale cm,y=\scale cm]
+\draw[fill=white]
+(0,0) -- (0,\fileheight) --
+(\filewidth-\fold,\fileheight) --
+(\filewidth,\fileheight-\fold) --
+(\filewidth,0) -- cycle;
+\draw[fill=white]
+(\filewidth-\fold,\fileheight) --
+(\filewidth-\fold,\fileheight-\fold) --
+(\filewidth,\fileheight-\fold) -- cycle;
+\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
+\node[anchor=center, text width=\filewidth cm, align=center]
+at (\filewidth/2,\fileheight/2) {DocBook};
+\end{tikzpicture}
+};
+
+% ---------------- HTML ----------------
+\node (html) [right=of xslt] {
+\begin{tikzpicture}[x=\scale cm,y=\scale cm]
+\draw[fill=white]
+(0,0) -- (0,\fileheight) --
+(\filewidth-\fold,\fileheight) --
+(\filewidth,\fileheight-\fold) --
+(\filewidth,0) -- cycle;
+\draw[fill=white]
+(\filewidth-\fold,\fileheight) --
+(\filewidth-\fold,\fileheight-\fold) --
+(\filewidth,\fileheight-\fold) -- cycle;
+\node[anchor=center, text width=\filewidth cm, align=center]
+at (\filewidth/2,\fileheight/2) {HTML};
+\end{tikzpicture}
+};
+
+% ---------------- PDF ----------------
+\node (pdf) [right=of docbook] {
+\begin{tikzpicture}[x=\scale cm,y=\scale cm]
+\draw[fill=white]
+(0,0) -- (0,\fileheight) --
+(\filewidth-\fold,\fileheight) --
+(\filewidth,\fileheight-\fold) --
+(\filewidth,0) -- cycle;
+\draw[fill=white]
+(\filewidth-\fold,\fileheight) --
+(\filewidth-\fold,\fileheight-\fold) --
+(\filewidth,\fileheight-\fold) -- cycle;
+\node[anchor=center, text width=\filewidth cm, align=center]
+at (\filewidth/2,\fileheight/2) {PDF};
+\end{tikzpicture}
+};
+
+% ---------------- XSL-FO (ECHT ZENTRIERT) ----------------
+\node (fo) at ($(xslt)!0.5!(docbook)$) {
+\begin{tikzpicture}[x=\scale cm,y=\scale cm]
+\draw[fill=white]
+(0,0) -- (0,\fileheight) --
+(\filewidth-\fold,\fileheight) --
+(\filewidth,\fileheight-\fold) --
+(\filewidth,0) -- cycle;
+\draw[fill=white]
+(\filewidth-\fold,\fileheight) --
+(\filewidth-\fold,\fileheight-\fold) --
+(\filewidth,\fileheight-\fold) -- cycle;
+\node[anchor=center, text width=\filewidth cm, align=center]
+at (\filewidth/2,\fileheight/2) {XSL--FO};
+\end{tikzpicture}
+};
+
+% ---------------- Pfeile ----------------
+\draw[->] (xml) -- (xslt);
+\draw[->] (xml) -- (docbook);
+\draw[->] (xslt) -- (html);
+\draw[->] (xml) -- (fo);
+\draw[->] (fo) -- (pdf);
+\draw[->] (docbook) -- (pdf);
+
+\end{tikzpicture}
+\caption{Übersicht der Dokumenttypen und Transformationspfade}
+\label{fig:files}
+\end{figure}
 
 \begin{figure}[H]
 \centering
@@ -200,17 +347,57 @@ at (\filewidth/2,\fileheight/2) {#1};
 
 \end{tikzpicture}
 \caption{Transformations- und Validierungsbeziehungen zwischen XML-basierten Dokumentformaten}
-\label{fig:files}
+\label{fig:files2}
 \end{figure}
 
 
 
+\subsection{Grundlegende Informationen}
 
-Für dieses Projekt wurde ein GitHub-Repositorium angelegt, dass diese Dateien enthält. Es gibt ein Verzeichnis \texttt{docs} mit der Dokumentation (als tex- und pdf-Dokument). Das Verzeichnis \texttt{xml-pipeline} enthält die für \autoref{sec:Datensatz} und \autoref{sec:Transformationen} relevanten Dateien. Der Ordner \texttt{programming} beinhaltet die Dateien für \autoref{sec:Programmierung}.
+
+Tabelle \ref{tab:overview_files} zeigt eine zusammenfassende Übersicht aller angehängten Dateien.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Übersicht über die Dateien und ihren Inhalt}
+    \label{tab:overview_files}
+    \begin{tabular}{|l|l|}
+    \hline
+    Dateiname & Inhalt \\ \hline
+    Products.xml & XML-Datenquelle mit Produktinformationen \\ \hline
+    Products.xsd & XML-Schema zur Validierung der Produktdaten \\ \hline
+    Products.xslt & XSLT-Stylesheet zur Transformation von XML nach HTML \\ \hline
+    Products.html & Ergebnisdokument im HTML-Format \\ \hline
+    Products.xsl & XSL-FO-Stylesheet zur Erzeugung von Layout/Formatierung \\ \hline
+    Products.fo & Zwischenformat mit XSL-FO für PDF-Erstellung \\ \hline
+    Products.pdf & Enddokument im PDF-Format \\ \hline
+    Products\_DocBook.xml & XML-Dokument im DocBook-Format \\ \hline
+    Products2.fo & Zweites XSL-FO-Dokument für alternative PDF-Ausgabe \\ \hline
+    Products2.pdf & Zweite PDF-Ausgabe basierend auf Products2.fo \\ \hline
+    \end{tabular}
+\end{table}
+
+Um dieses Projekt einfacher bearbeiten zu können und eine Versionskontrolle zu ermöglichen, wurde ein \textit{GitHub Repository} erstellt. Dieses vereinfacht insbesondere die Zusammenarbeit an diesem Projekt bei mehreren Teilnehmern. Dieses \textit{Repository} enthält alle angehängten Dateien und ermöglicht es auch, auf ältere Zwischenstände .
+
+Für dieses Projekt wurden folgende Quellen verwendet:
+
+\begin{itemize}
+    \item Moodle-Unterlagen für das Modul Internettechnologien
+    \item https://www.digikey.de
+    \item https://www.mouser.de
+\end{itemize}
 
 
-\section{Datensatz}
-\label{sec:Datensatz}
+
+
+\section{Datensatz} \label{sec:datensatz}
+
+Als Thema für einen Beispieldatensatz wurden für dieses Projekt elektronische Bauteile gewählt. Dieser Datensatz umfasst 9 Objekte, davon 3 Widerstände, 2 Spulen, 2 Kondensatoren sowie 2 Dioden. Der Hintergrund ist, dass die vorhandenen Daten auf einer Produkt-Website dargestellt werden können. Für den Inhalt des Datensatzes wurde sich deshalb auf die dafür wichtigen Daten konzentriert. Jedes Objekt umfasst die 3 Attribute Anzahl, Preis und Hersteller sowie eine Bauteil-spezifische Datensequenz. Die beinhaltet die physikalische Größe des jeweiligen Bauteils, wobei der Wert, die Einheit und die Toleranz angegeben wird. Die Bezeichnung dieser Datensequenz ist für jedes Bauteil spezifisch. Während die Widerstände, Spulen und Kapazitäten jeweils nur eine spezifische physikalische Größe umfassen, können für Dioden mehrere angegeben werden. Diese konkrete Zuordnung der physikalischen Größen vereinfacht die folgende Validierung der XML-Datei mit der XSD-Schemadatei. Der vollständige Datensatz dieses Projektes ist in der Datei \textit{Products.xml} enthalten.
+
+Die XSD-Schemadatei dient dazu, die Angaben in der XML-Datei auf Richtigkeit zu überprüfen. So kann abgesichert werden, dass die geforderten Angaben in der XML-Datei gemacht wurden. Darüber kann überprüft werden, ob die angegebenen Datentypen richtig sind. Die erstellte XSD-Datei dieses Projekts ist in \textit{Products.xsd} zu finden. Darüber hinaus wurde die Datei \textit{Products\_automatic\_generated.xsd} automatisch durch die Dokumentenerstellung in \textit{editiX} erzeugt. Hierbei ist allerdings die Genauigkeit nicht so hoch wie bei \textit{Products.xsd}. Es können nicht überall die gewünschten Datentypen angegeben werden. Außerdem ist es nicht möglich, ein \textit{choice} Element zu verwenden. Es wird daher empfohlen, zur Validierung der XML-Datei die XSD-Datei \textit{Products.xsd} zu verwenden.
+
+
+
 Der Datensatz beschreibt Produkte eines fiktiven Elektronikshops.
 Er liegt als \texttt{products.xml} vor.
 
@@ -248,9 +435,8 @@ Zudem sind die ersten beiden Transformationen sehr generisch -- mit ihnen kann s
 \section{Programmierung}
 \label{sec:Programmierung}
 
+Um die geforderte Validierung, Abfrage und Transformation der XML-Datei zu ermöglichen, wurde für dieses Projekt die Programmiersprache \textit{Python} verwendet. Durch das Modul \textit{lxml} ist es möglich, diese Funktionalitäten umzusetzen.
 
-    
-\section{Quellenverzeichnis}
 
 
 \end{document}
