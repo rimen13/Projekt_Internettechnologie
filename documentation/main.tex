@@ -134,15 +134,15 @@ twoside = false
 
 Als Grundlage dieses Projekts dient das Anlegen eines XML-Datensatzes. Dieser sollte aus mehreren Objekten mit jeweils mindestens einem Attribut und einer Datensequenz bestehen. Die anschließende Aufgabe besteht im Erstellen einer XSD-Schemadatei. Damit kann validiert werden, ob die gegebene XML-Datei die gewünschte Struktur erfüllt und alle benötigten Angaben enthält. Darüber hinaus soll eine in \textit{EditiX} automatisch generierte XSD-Schemadatei erstellt werden.
 
-Der zweite Teil des Projekts befasst sich mit der Transformation der XML-Datei. Zunächst sollen die Daten auf einer HTML-Seite dargestellt werden. Dazu muss zunächst die XSLT-Transformationsdatei erzeugt werden. Darüber hinaus soll die Transformation in ein PDF erfolgen. Hierfür wurde die FOP-Transformation eingesetzt. Eine übersichtliche Darstellung dieser Transformationen zeigt Abbildung \ref{fig:files}.
+Der zweite Teil des Projekts befasst sich mit der Transformation der XML-Datei. Zunächst sollen die Daten auf einer HTML-Seite dargestellt werden. Dazu muss zunächst die XSLT-Transformationsdatei erzeugt werden. Darüber hinaus soll die Transformation in eine PDF erfolgen. Hierfür wurde die FOP-Transformation eingesetzt. Eine übersichtliche Darstellung dieser Transformationen zeigt Abbildung \ref{fig:files}.
 
-Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll eine Apllikation erstellt werden, welche die Validierung, Abfrage und Transformation der XML-Datei ermöglicht.
+Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll eine Apllikation erstellt werden, welche die Validierung, Abfrage und Transformation der XML-Datei ermöglicht. \\
 
 \enlargethispage{1\baselineskip}
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[>=Stealth, thick, node distance=2.5cm and 3cm]
+\begin{tikzpicture}[>=Stealth, thick]
 
 % ---------------- Parameter ----------------
 \def\filewidth{1.8}
@@ -150,151 +150,135 @@ Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll
 \def\fold{0.5}
 \def\scale{1}
 
-% ---------------- XML ----------------
+\def\dx{3.3}     % horizontaler Abstand
+\def\dy{2.5}       % vertikaler Versatz der Pfade
+\def\split{1.5}    % Länge bis zur Aufteilung der Pfeile
+
+% ---------------- XSD ----------------
+\node (xsd) at (-\dx,0) {
+\begin{tikzpicture}[x=\scale cm,y=\scale cm]
+\draw[fill=white]
+(0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
+(\filewidth,\fileheight-\fold)--(\filewidth,0)--cycle;
+\draw[fill=white]
+(\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
+(\filewidth,\fileheight-\fold)--cycle;
+\draw (\filewidth-\fold,\fileheight)--(\filewidth,\fileheight-\fold);
+\node at (\filewidth/2,\fileheight/2) {XSD};
+\end{tikzpicture}
+};
+
+% ---------------- XML (Mittellinie) ----------------
 \node (xml) at (0,0) {
 \begin{tikzpicture}[x=\scale cm,y=\scale cm]
 \draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
+(0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
+(\filewidth,\fileheight-\fold)--(\filewidth,0)--cycle;
 \draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {XML};
+(\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
+(\filewidth,\fileheight-\fold)--cycle;
+\draw (\filewidth-\fold,\fileheight)--(\filewidth,\fileheight-\fold);
+\node at (\filewidth/2,\fileheight/2) {XML};
 \end{tikzpicture}
 };
 
-% ---------------- XSD ----------------
-\node (xsd) [below=5cm of xml] {
+\draw[<->] (xsd) -- (xml);
+
+% ---------------- Unterer Pfad: XSL → FO → PDF ----------------
+\node (xsl) at (\dx,-\dy) {
 \begin{tikzpicture}[x=\scale cm,y=\scale cm]
 \draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
+(0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
+(\filewidth,\fileheight-\fold)--(\filewidth,0)--cycle;
 \draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {XSD};
+(\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
+(\filewidth,\fileheight-\fold)--cycle;
+\draw (\filewidth-\fold,\fileheight)--(\filewidth,\fileheight-\fold);
+\node at (\filewidth/2,\fileheight/2) {XSL};
 \end{tikzpicture}
 };
 
-\draw[<->] (xml) -- (xsd);
-
-% ---------------- XSLT ----------------
-\node (xslt) [right=of xml] {
+\node (fo) at (2*\dx,-\dy) {
 \begin{tikzpicture}[x=\scale cm,y=\scale cm]
 \draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
+(0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
+(\filewidth,\fileheight-\fold)--(\filewidth,0)--cycle;
 \draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {XSLT};
+(\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
+(\filewidth,\fileheight-\fold)--cycle;
+\node at (\filewidth/2,\fileheight/2) {XSL--FO};
 \end{tikzpicture}
 };
 
-% ---------------- DocBook ----------------
-\node (docbook) [below=5cm of xslt] {
+\node (pdf) at (3*\dx,-\dy) {
 \begin{tikzpicture}[x=\scale cm,y=\scale cm]
 \draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
+(0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
+(\filewidth,\fileheight-\fold)--(\filewidth,0)--cycle;
 \draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {DocBook};
+(\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
+(\filewidth,\fileheight-\fold)--cycle;
+\node at (\filewidth/2,\fileheight/2) {PDF};
 \end{tikzpicture}
 };
 
-% ---------------- HTML ----------------
-\node (html) [right=of xslt] {
+% ---------------- Oberer Pfad: XSLT → HTML ----------------
+\node (xslt) at (1.5*\dx,\dy) {
 \begin{tikzpicture}[x=\scale cm,y=\scale cm]
 \draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
+(0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
+(\filewidth,\fileheight-\fold)--(\filewidth,0)--cycle;
 \draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {HTML};
+(\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
+(\filewidth,\fileheight-\fold)--cycle;
+\draw (\filewidth-\fold,\fileheight)--(\filewidth,\fileheight-\fold);
+\node at (\filewidth/2,\fileheight/2) {XSLT};
 \end{tikzpicture}
 };
 
-% ---------------- PDF ----------------
-\node (pdf) [right=of docbook] {
+\node (html) at (3*\dx,\dy) {
 \begin{tikzpicture}[x=\scale cm,y=\scale cm]
 \draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
+(0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
+(\filewidth,\fileheight-\fold)--(\filewidth,0)--cycle;
 \draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {PDF};
+(\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
+(\filewidth,\fileheight-\fold)--cycle;
+\node at (\filewidth/2,\fileheight/2) {HTML};
 \end{tikzpicture}
 };
 
-% ---------------- XSL-FO (ECHT ZENTRIERT) ----------------
-\node (fo) at ($(xslt)!0.5!(docbook)$) {
-\begin{tikzpicture}[x=\scale cm,y=\scale cm]
-\draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
-\draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {XSL--FO};
-\end{tikzpicture}
-};
+% ---------------- Pfeile: horizontale Aufteilung ----------------
+\coordinate (split) at (\split,0);
 
-% ---------------- Pfeile ----------------
-\draw[->] (xml) -- (xslt);
-\draw[->] (xml) -- (docbook);
-\draw[->] (xslt) -- (html);
-\draw[->] (xml) -- (fo);
+\draw (xml.east) -- (split);
+
+\draw[->] (split) |- (xslt.west);
+\draw[->] (split) |- (xsl.west);
+
+\draw[->] (xsl) -- (fo);
 \draw[->] (fo) -- (pdf);
-\draw[->] (docbook) -- (pdf);
+
+\draw[->] (xslt) -- (html);
 
 \end{tikzpicture}
 \caption{Übersicht der Dokumenttypen und Transformationspfade}
 \label{fig:files}
 \end{figure}
 
+
+
+
+
+
+
+
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[
     >=Stealth,
     thick,
-    node distance=2.8cm and 2.5cm,
-    scale=0.85,
+    node distance=1cm and 1cm,
     transform shape
 ]
 
@@ -324,7 +308,7 @@ at (\filewidth/2,\fileheight/2) {#1};
 
 % ================= Erste Ebene =================
 \node (xml) at (0,0) {\fileblock{XML}};
-\node (xsd) [right=6cm of xml] {\fileblock{XSD}};
+\node (xsd) [right=1cm of xml] {\fileblock{XSD}};
 
 \draw[<->] (xml) -- (xsd);
 
