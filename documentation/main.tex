@@ -44,7 +44,8 @@ twoside = false
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{forest}
 
 % -------------------------------------------------
 % Kopf- und Fußzeilen (KOMA-konform, einheitlich)
@@ -356,7 +357,7 @@ at (\filewidth/2,\fileheight/2) {#1};
 Für eine einfachere Bearbeitung dieses Projekts und zur Versionskontrolle wurde ein \textit{GitHub-Repository} erstellt. Dieses vereinfacht insbesondere die Zusammenarbeit mehrerer Teilnehmer. Das \textit{Repository} enthält alle angehängten Dateien und ermöglicht den Zugriff auf ältere Zwischenstände.
 
 
-Abb. \ref{tab:overview_files} die Struktur der angehängten Dateien im GitHub-Repositorium.
+Abb. %\ref{tab:overview_files} die Struktur der angehängten Dateien im GitHub-Repositorium.
 
 \begin{figure}[H]
 \centering
@@ -390,7 +391,6 @@ for tree={
             [products.xsd]
         ]
     ]
-
     [documentation, parent anchor=east, child anchor=west
         [main.tex]
         [main.pdf]
@@ -418,8 +418,6 @@ for tree={
 \label{fig:projektordnerstruktur}
 \end{figure}
 
-\todo{forest einbinden!!!}
-
 Für dieses Projekt wurden folgende Quellen verwendet:
 
 \begin{itemize}
@@ -432,7 +430,7 @@ Für dieses Projekt wurden folgende Quellen verwendet:
 
 \section{Datensatz} \label{sec:datensatz}
 
-Als Thema für den Beispieldatensatz wurden in diesem Projekt elektronische Bauteile eines fiktiven Elektronikshops gewählt. Der vollständige Datensatz dieses Projekts ist in der Datei \textit{products.xml} enthalten. Er umfasst 9 Objekte, davon 3 Widerstände, 2 Spulen, 2 Kondensatoren sowie 2 Dioden. Hintergrund ist, dass die vorhandenen Daten auf einer Produkt-Website dargestellt werden können. Beim Inhalt des Datensatzes wurde sich deshalb auf die dafür wichtigsten Daten konzentriert. Das Root-Element ist \textit{Products}, das alle \textit{Product}-Elemente enthält. Diese können über den Eintrag im \textit{id}-Attribut eindeutig identifiziert werden. Jedes dieser \textit{Product}-Elemente umfasst die Elemente Anzahl, Preis und Hersteller sowie, abhängig vom mit dem \textit{type}-Attribut spezifizierten Bauteil, eine oder zwei bauteilspezifische Datensequenzen. Diese beinhalten die physikalischen Größen des jeweiligen Bauteils, wobei der Wert, die Einheit und die Toleranz angegeben werden. Die Einheit \todo{Einheit??? \% ist keine Einheit} der Toleranz kann mit dem \textit{unit}-Attribut eingestellt werden, ebenso die Einheit des Preises. Die Bezeichnung dieser Datensequenz ist für jedes Bauteil spezifisch. Während die Widerstände, Spulen und Kapazitäten jeweils nur eine spezifische physikalische Größe umfassen, können für Dioden mehrere angegeben werden. Diese konkrete Zuordnung der physikalischen Größen vereinfacht die anschließende Validierung der XML-Datei mit der XSD-Schemadatei.
+Als Thema für den Beispieldatensatz wurden in diesem Projekt elektronische Bauteile eines fiktiven Elektronikshops gewählt. Der vollständige Datensatz dieses Projekts ist in der Datei \textit{products.xml} enthalten. Er umfasst 9 Objekte, davon 3 Widerstände, 2 Spulen, 2 Kondensatoren sowie 2 Dioden. Hintergrund ist, dass die vorhandenen Daten auf einer Produkt-Website dargestellt werden können. Beim Inhalt des Datensatzes wurde sich deshalb auf die dafür wichtigsten Daten konzentriert. Das Root-Element ist \textit{Products}, das alle \textit{Product}-Elemente enthält. Diese können über den Eintrag im \textit{id}-Attribut eindeutig identifiziert werden. Jedes dieser \textit{Product}-Elemente umfasst die Elemente Anzahl, Preis und Hersteller sowie, abhängig vom mit dem \textit{type}-Attribut spezifizierten Bauteil, eine oder zwei bauteilspezifische Datensequenzen. Diese beinhalten die physikalischen Größen des jeweiligen Bauteils, wobei der Wert, die Einheit und die Toleranz angegeben werden. Die Einheit \textcolor{red}{Einheit??? \% ist keine Einheit} der Toleranz kann mit dem \textit{unit}-Attribut eingestellt werden, ebenso die Einheit des Preises. Die Bezeichnung dieser Datensequenz ist für jedes Bauteil spezifisch. Während die Widerstände, Spulen und Kapazitäten jeweils nur eine spezifische physikalische Größe umfassen, können für Dioden mehrere angegeben werden. Diese konkrete Zuordnung der physikalischen Größen vereinfacht die anschließende Validierung der XML-Datei mit der XSD-Schemadatei.
 
 Das zugehörige Schema befindet sich in \texttt{products.xsd}. Es definiert Struktur, Reihenfolge und Häufigkeit der verwendeten Elemente. Das Schema dient dazu, die Angaben in der XML-Datei auf formale Richtigkeit zu überprüfen. Damit kann sichergestellt werden, dass die geforderten Angaben in der XML-Datei gemacht wurden. Diese Richtigkeit ist für die Transformation in andere Datenformate unerlässlich. Außerdem kann überprüft werden, ob die angegebenen Datentypen korrekt sind. Die erstellte XSD-Datei dieses Projekts ist in \textit{products.xsd} zu finden. Beim Entwurf des XSD-Schemas wurde darauf geachtet, jedes Element über einen eigenen Typ zu kapseln, sodass spätere Änderungen gezielt und unabhängig vorgenommen werden können. Die verwendeten Datentypen wurden bewusst gewählt, um eine valide und konsistente Datenstruktur sicherzustellen. Standardwerte kommen dort zum Einsatz, wo Attribute fehlen, um sinnvolle und einheitliche Einstellungen zu gewährleisten. Feste Werte werden verwendet, um Abweichungen frühzeitig zu erkennen und als Fehler zu kennzeichnen. Darüber hinaus wurde die Datei \textit{products-automatic-generated.xsd} automatisch durch die Dokumentenerstellung mit \textit{EditiX} erzeugt. Diese Datei ist jedoch nicht so präzise wie \textit{products.xsd}.Es können nicht an allen Stellen die gewünschten Datentypen angegeben werden. Außerdem ist es nicht möglich, ein \textit{choice}-Element zu verwenden. Es wird daher empfohlen, zur Validierung der XML-Datei die XSD-Datei \textit{products.xsd} zu verwenden.
 
@@ -459,12 +457,98 @@ Die erste Transformation wandelt eine XML in ein HTML-Dokument, wohingegen die z
 
 Beide Transformationen sind sehr generisch -- mit ihnen kann stets das angestrebte Output-Dokument erzeugt werden, sofern die übergebene XML den in \autoref{sec:datensatz} erläuterten Anforderungen der Schemadatei genügt.
 
+
+
 \section{Programmierung}
 \label{sec:Programmierung}
 
-Um die geforderte Validierung, Abfrage und Transformation der XML-Datei zu ermöglichen, wurde für dieses Projekt die Programmiersprache \textit{Python} verwendet. Durch das Modul \textit{lxml} ist es möglich, diese Funktionalitäten umzusetzen.
+\subsection{Grundlegende Informationen}
+
+Durch die XML-Programmierung sollen folgende Funktionalitäten implementiert werden:
+
+\begin{enumerate}
+    \item Validierung eines XML-Dokuments gegen ein XSD-Schema
+    \item Abfrage von Informationen aus einem XML-Dokument
+    \item Transformation eines XML-Dokuments in eine HTML-Website
+\end{enumerate}
+
+Zur Umsetzung dieser Funktionalitäten wird im Rahmen dieses Projekts die Programmiersprache \textit{Python} verwendet. Um das die in den folgenden Kapiteln beschriebenen Befehle in der Kommandozeile ausführen zu können, muss \textit{Python} von der offiziellen Website https://www.python.org unter dem Reiter \textit{Downloads} installiert werden. Für dieses Projekt wurde Version 3.12.8 genutzt. Außerdem müssen die beiden Module \textit{lxml} und \textit{tkinter} installiert werden.
+
+Durch das Modul \textit{lxml} ist es möglich, diese Funktionalitäten umzusetzen.
 
 
+
+Damit die Befehle über die Kommandozeile aufgerufen werden können, muss zunächst ein lokaler Python Download erfolgen.
+
+HIER MUSS ICH ES MAL MIT MEINEM EIGENEN LINUX SYSTEM PROBIEREN!
+
+
+
+
+Für alle 3 Teilaufgaben existieren 3 getrennte Python-Dateien:
+
+\begin{enumerate}
+    \item Backend-Datei (\texttt{*\_backend.py}): enthält ausschließlich die Logik der jeweiligen Aufgabe und können nicht direkt ausgeführt werden
+    \item Projektmodus-Datei (\texttt{*\_from\_project.py}): führt die jeweilige Aufgabe mit den im Projekt erarbeiteten Dateien aus
+    \item Interaktiv-Datei (\texttt{*\_interactive.py}): ermöglicht die Auswahl beliebiger Dateien und führt die jeweilige Aufgabe für diese durch
+\end{enumerate}
+
+Die jeweiligen Dateien enthalten den beschriebenen Code, der ausführlich kommentiert ist. Die Dateien können ausgeführt werden, indem man zunächst die virtuelle Umgebung aktiviert und in der Kommandizeile in das Verzeichnis \texttt{programming/src} wechselt und den Befehl \texttt{python\ desired\_file.py} ausführt. Dabei ist \texttt{desired\_file.py} ein Platzhalter für den eigentlichen Dateinamen, der an dieser Stelle natürlich eingesetzt werden muss.
+
+
+
+\subsection{Abfrage}
+
+Bei der Abfrage werden gezielt Informationen aus einem XML-Dokument extrahiert, indem XPath verwendet wird. Hierbei werden 3 verschiedene Abfragen durchgeführt:
+
+\begin{enumerate}
+    \item Welche Produkt-IDs gibt es?
+    \item Wie heißen die Hersteller? (Hierbei sollen mehrfach aufgeführte Hersteller nur einmal aufgeführt werden.)
+    \item Was ist die Gesamtanzahl aller Widerstände im Lager?
+\end{enumerate}
+
+Führt man die Datei \texttt{query\_from\_project.py} für den Projektmodus aus, dann wird in der Kommandozeile folgendes ausgegeben:
+
+\begin{verbatim}
+=== QUERY ===
+
+Query 1: Retrieve all product IDs.
+Result: ['R001', 'R002', 'R003', 'L001', 'L002', 'C001', 'C002', 
+        'D001', 'D002']
+
+Query 2: Retrieve unique manufacturer names.
+Result: ['Diodes Incorporated', 'Micro Commercial Components', 
+        'Murata Power Solutions', 'Samsung Electro-Mechanics', 
+        'Stackpole Electronics', 'Taiyo Yuden']
+
+Query 3: Calculate the total number of resistors in stock.
+Result: 864907
+\end{verbatim}
+
+Möchte man die interaktive Abfrage durchführen, kann man über die Datei \texttt{query\_from\_project.py} eine XML-Datei aus dem Datei-Explorer auswählen. Anschließend wird zunächst überprüft, ob die angegebene Datei das vorgegebene XSD-Schema erfüllt. Ist dies nicht der Fall, können die Abfragen nicht durchgeführt werden und es wird eine Fehlermeldung ausgegeben. Ist die XML-Datei gültig, werden ebenfalls die 3 Abfragen getätigt und die Ergebnisse ausgegeben.
+
+
+
+\subsection{Validierung}
+
+Um eine XML-Datei gegen ein XSD-Schema validieren zu können, kommen die Dateien \texttt{validate\_from\_project.py} und \texttt{validate\_interactive.py} zur Anwendung. Dabei kann in ersterem Fall die XML-Datei gegen die XSD-Datei aus dem gegebenen Projekt validiert werden. Für die zweite Datei ist die Auswahl einer beliebigen XML- und XSD-Datei im Datei-Explorer möglich. Die Ausgabe in der Kommandozeile für eine gültige oder nicht gültige XML-Datei lautet folgendermaßen:
+
+\begin{verbatim}
+VALIDATION RESULT: products.xml is valid according to products.xsd
+
+VALIDATION RESULT: products.xml is NOT valid according to products.xsd
+\end{verbatim}
+
+
+
+\subsection{Transformation}
+
+Die Transformation erfolgt über die Dateien \texttt{transfrom\_from\_project.py} und \texttt{transform\_interactive.py}. Dabei wird entweder die XML- und XSLT-Datei des gegebenen Projekts verwendet oder im interaktiven Modus werden diese beiden Dateitypen vom Anwender übergeben. Anschließend wird die Transformation in eine HTML-Datei durchgeführt und in den \textit{output}-Ordner (in \textit{programming}) gelegt, sodass sich der Anwender die entstehende HTML-Website anschauen kann. Im interaktiven Modus kann sich der Anwender den Zielordner selsbt aussuchen. In der Kommandozeile kommt der Hinweis:
+
+\begin{verbatim}
+HTML generated: products.html
+\end{verbatim}
+
+Im Unterordner \textit{programming/output} befindet sich bereits die HTML-Datei, die durch die durchgeführte Transformation für die im Projekt gegebenen Dokumente entstanden ist.
 
 \end{document}
-
