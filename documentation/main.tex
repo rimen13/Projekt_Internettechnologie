@@ -131,11 +131,11 @@ twoside = false
 
 \subsection{Zielstellung}
 
-Als Grundlage dieses Projekts dient das Anlegen eines XML-Datensatzes. Dieser sollte aus mehreren Objekten mit jeweils mindestens einem Attribut und einer Datensequenz bestehen. Die daran anschließende Aufgabe besteht im Erstellen einer XSD-Schemadatei. Damit kann validiert werden, ob die gegebene XML-Datei die gewünschte Struktur erfüllt und alle benötigten Angaben gemacht wurden. Darüber hinaus soll eine in \textit{editiX} automatisch generierte XSD-Schemadatei erstellt werden.
+Als Grundlage dieses Projekts dient das Anlegen eines XML-Datensatzes. Dieser sollte aus mehreren Objekten mit jeweils mindestens einem Attribut und einer Datensequenz bestehen. Die anschließende Aufgabe besteht im Erstellen einer XSD-Schemadatei. Damit kann validiert werden, ob die gegebene XML-Datei die gewünschte Struktur erfüllt und alle benötigten Angaben enthält. Darüber hinaus soll eine in \textit{EditiX} automatisch generierte XSD-Schemadatei erstellt werden.
 
-Der zweite Teil des Projekts befasst sich mit der Transformation der XML-Datei. Als Erstes sollen die Daten auf einer HTML-Page dargestellt werden. Dazu muss zunächst die XSLT-Transformationsdatei erzeugt werden. Darüber hinaus soll die Transformation in eine PDF erfolgen. Dazu gibt es die Möglichkeit der direkten FOP-Tranformation oder die Docbook-Transformation. Eine übersichtliche Darstellung dieser Transformationen zeigt Abbildung \ref{fig:files}.
+Der zweite Teil des Projekts befasst sich mit der Transformation der XML-Datei. Zunächst sollen die Daten auf einer HTML-Seite dargestellt werden. Dazu muss zunächst die XSLT-Transformationsdatei erzeugt werden. Darüber hinaus soll die Transformation in ein PDF erfolgen. Hierfür wurde die FOP-Transformation eingesetzt. Eine übersichtliche Darstellung dieser Transformationen zeigt Abbildung \ref{fig:files}.
 
-Der dritte Aufgabenteil setzt sich mit der XML-Programmierung auseinander. Dabei soll eine Apllikation erstellt werden, welche die Validierung, Abfrage und Transformation der XML-Datei ermöglichen soll.
+Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll eine Apllikation erstellt werden, welche die Validierung, Abfrage und Transformation der XML-Datei ermöglicht.
 
 \enlargethispage{1\baselineskip}
 
@@ -353,31 +353,72 @@ at (\filewidth/2,\fileheight/2) {#1};
 
 
 \subsection{Grundlegende Informationen}
+Für eine einfachere Bearbeitung dieses Projekts und zur Versionskontrolle wurde ein \textit{GitHub-Repository} erstellt. Dieses vereinfacht insbesondere die Zusammenarbeit mehrerer Teilnehmer. Das \textit{Repository} enthält alle angehängten Dateien und ermöglicht den Zugriff auf ältere Zwischenstände.
 
 
-Tabelle \ref{tab:overview_files} zeigt eine zusammenfassende Übersicht aller angehängten Dateien.
+Abb. \ref{tab:overview_files} die Struktur der angehängten Dateien im GitHub-Repositorium.
 
-\begin{table}[htbp]
-    \centering
-    \caption{Übersicht über die Dateien und ihren Inhalt}
-    \label{tab:overview_files}
-    \begin{tabular}{|l|l|}
-    \hline
-    Dateiname & Inhalt \\ \hline
-    Products.xml & XML-Datenquelle mit Produktinformationen \\ \hline
-    Products.xsd & XML-Schema zur Validierung der Produktdaten \\ \hline
-    Products.xslt & XSLT-Stylesheet zur Transformation von XML nach HTML \\ \hline
-    Products.html & Ergebnisdokument im HTML-Format \\ \hline
-    Products.xsl & XSL-FO-Stylesheet zur Erzeugung von Layout/Formatierung \\ \hline
-    Products.fo & Zwischenformat mit XSL-FO für PDF-Erstellung \\ \hline
-    Products.pdf & Enddokument im PDF-Format \\ \hline
-    Products\_DocBook.xml & XML-Dokument im DocBook-Format \\ \hline
-    Products2.fo & Zweites XSL-FO-Dokument für alternative PDF-Ausgabe \\ \hline
-    Products2.pdf & Zweite PDF-Ausgabe basierend auf Products2.fo \\ \hline
-    \end{tabular}
-\end{table}
+\begin{figure}[H]
+\centering
+\begin{forest}
+for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    align=left,
+    tier/.option=level,
+    inner xsep=1.5pt,
+    edge path={
+        \noexpand\path [draw, \forestoption{edge}]
+        (!u.parent anchor) -- +(5pt,0) |- (.child anchor)\forestoption{edge label};
+    },
+}
+[project, parent anchor=east, child anchor=west
+    [assets, parent anchor=east, child anchor=west
+        [output, parent anchor=east, child anchor=west
+            [products.fo]
+            [products.html]
+            [products.pdf]
+        ]
+        [src, parent anchor=east, child anchor=west
+            [products-automatic-generated.xsd]
+            [products-to-html.xslt]
+            [products-to-pdf.xsl]
+            [products.xml]
+            [products.xsd]
+        ]
+    ]
 
-Um dieses Projekt einfacher bearbeiten zu können und eine Versionskontrolle zu ermöglichen, wurde ein \textit{GitHub Repository} erstellt. Dieses vereinfacht insbesondere die Zusammenarbeit an diesem Projekt bei mehreren Teilnehmern. Dieses \textit{Repository} enthält alle angehängten Dateien und ermöglicht es auch, auf ältere Zwischenstände .
+    [documentation, parent anchor=east, child anchor=west
+        [main.tex]
+        [main.pdf]
+    ]
+    [programming, parent anchor=east, child anchor=west
+        [output, parent anchor=east, child anchor=west
+            [products.html]
+        ]
+        [src, parent anchor=east, child anchor=west
+            [query\_backend.py]
+            [query\_from\_project.py]
+            [query\_interactive.py]
+            [transform\_backend.py]
+            [transform\_from\_project.py]
+            [transform\_interactive.py]
+            [validate\_backend.py]
+            [validate\_from\_project.py]
+            [validate\_interactive.py]
+        ]
+    ]
+    [requirements.txt]
+]
+\end{forest}
+\caption{Projektordnerstruktur}
+\label{fig:projektordnerstruktur}
+\end{figure}
+
+\todo{forest einbinden!!!}
 
 Für dieses Projekt wurden folgende Quellen verwendet:
 
@@ -389,24 +430,12 @@ Für dieses Projekt wurden folgende Quellen verwendet:
 
 
 
-
 \section{Datensatz} \label{sec:datensatz}
 
-Als Thema für einen Beispieldatensatz wurden für dieses Projekt elektronische Bauteile gewählt. Dieser Datensatz umfasst 9 Objekte, davon 3 Widerstände, 2 Spulen, 2 Kondensatoren sowie 2 Dioden. Der Hintergrund ist, dass die vorhandenen Daten auf einer Produkt-Website dargestellt werden können. Für den Inhalt des Datensatzes wurde sich deshalb auf die dafür wichtigen Daten konzentriert. Jedes Objekt umfasst die 3 Attribute Anzahl, Preis und Hersteller sowie eine Bauteil-spezifische Datensequenz. Die beinhaltet die physikalische Größe des jeweiligen Bauteils, wobei der Wert, die Einheit und die Toleranz angegeben wird. Die Bezeichnung dieser Datensequenz ist für jedes Bauteil spezifisch. Während die Widerstände, Spulen und Kapazitäten jeweils nur eine spezifische physikalische Größe umfassen, können für Dioden mehrere angegeben werden. Diese konkrete Zuordnung der physikalischen Größen vereinfacht die folgende Validierung der XML-Datei mit der XSD-Schemadatei. Der vollständige Datensatz dieses Projektes ist in der Datei \textit{Products.xml} enthalten.
+Als Thema für den Beispieldatensatz wurden in diesem Projekt elektronische Bauteile eines fiktiven Elektronikshops gewählt. Der vollständige Datensatz dieses Projekts ist in der Datei \textit{products.xml} enthalten. Er umfasst 9 Objekte, davon 3 Widerstände, 2 Spulen, 2 Kondensatoren sowie 2 Dioden. Hintergrund ist, dass die vorhandenen Daten auf einer Produkt-Website dargestellt werden können. Beim Inhalt des Datensatzes wurde sich deshalb auf die dafür wichtigsten Daten konzentriert. Das Root-Element ist \textit{Products}, das alle \textit{Product}-Elemente enthält. Diese können über den Eintrag im \textit{id}-Attribut eindeutig identifiziert werden. Jedes dieser \textit{Product}-Elemente umfasst die Elemente Anzahl, Preis und Hersteller sowie, abhängig vom mit dem \textit{type}-Attribut spezifizierten Bauteil, eine oder zwei bauteilspezifische Datensequenzen. Diese beinhalten die physikalischen Größen des jeweiligen Bauteils, wobei der Wert, die Einheit und die Toleranz angegeben werden. Die Einheit \todo{Einheit??? \% ist keine Einheit} der Toleranz kann mit dem \textit{unit}-Attribut eingestellt werden, ebenso die Einheit des Preises. Die Bezeichnung dieser Datensequenz ist für jedes Bauteil spezifisch. Während die Widerstände, Spulen und Kapazitäten jeweils nur eine spezifische physikalische Größe umfassen, können für Dioden mehrere angegeben werden. Diese konkrete Zuordnung der physikalischen Größen vereinfacht die anschließende Validierung der XML-Datei mit der XSD-Schemadatei.
 
-Die XSD-Schemadatei dient dazu, die Angaben in der XML-Datei auf Richtigkeit zu überprüfen. So kann abgesichert werden, dass die geforderten Angaben in der XML-Datei gemacht wurden. Darüber kann überprüft werden, ob die angegebenen Datentypen richtig sind. Die erstellte XSD-Datei dieses Projekts ist in \textit{Products.xsd} zu finden. Darüber hinaus wurde die Datei \textit{Products\_automatic\_generated.xsd} automatisch durch die Dokumentenerstellung in \textit{editiX} erzeugt. Hierbei ist allerdings die Genauigkeit nicht so hoch wie bei \textit{Products.xsd}. Es können nicht überall die gewünschten Datentypen angegeben werden. Außerdem ist es nicht möglich, ein \textit{choice} Element zu verwenden. Es wird daher empfohlen, zur Validierung der XML-Datei die XSD-Datei \textit{Products.xsd} zu verwenden.
+Das zugehörige Schema befindet sich in \texttt{products.xsd}. Es definiert Struktur, Reihenfolge und Häufigkeit der verwendeten Elemente. Das Schema dient dazu, die Angaben in der XML-Datei auf formale Richtigkeit zu überprüfen. Damit kann sichergestellt werden, dass die geforderten Angaben in der XML-Datei gemacht wurden. Diese Richtigkeit ist für die Transformation in andere Datenformate unerlässlich. Außerdem kann überprüft werden, ob die angegebenen Datentypen korrekt sind. Die erstellte XSD-Datei dieses Projekts ist in \textit{products.xsd} zu finden. Beim Entwurf des XSD-Schemas wurde darauf geachtet, jedes Element über einen eigenen Typ zu kapseln, sodass spätere Änderungen gezielt und unabhängig vorgenommen werden können. Die verwendeten Datentypen wurden bewusst gewählt, um eine valide und konsistente Datenstruktur sicherzustellen. Standardwerte kommen dort zum Einsatz, wo Attribute fehlen, um sinnvolle und einheitliche Einstellungen zu gewährleisten. Feste Werte werden verwendet, um Abweichungen frühzeitig zu erkennen und als Fehler zu kennzeichnen. Darüber hinaus wurde die Datei \textit{products-automatic-generated.xsd} automatisch durch die Dokumentenerstellung mit \textit{EditiX} erzeugt. Diese Datei ist jedoch nicht so präzise wie \textit{products.xsd}.Es können nicht an allen Stellen die gewünschten Datentypen angegeben werden. Außerdem ist es nicht möglich, ein \textit{choice}-Element zu verwenden. Es wird daher empfohlen, zur Validierung der XML-Datei die XSD-Datei \textit{products.xsd} zu verwenden.
 
-
-
-Der Datensatz beschreibt Produkte eines fiktiven Elektronikshops.
-Er liegt als \texttt{products.xml} vor.
-
-Das zugehörige Schema befindet sich in \texttt{products.xsd}.
-Es definiert Struktur, Reihenfolge und Häufigkeit der verwendeten Elemente.
-Beim Entwurf des XSD wurde darauf geachtet, jedes Element über einen eigenen Typ zu kapseln, sodass spätere Änderungen gezielt und unabhängig vorgenommen werden können.
-Die verwendeten Datentypen wurden bewusst gewählt, um eine valide und konsistente Datenstruktur sicherzustellen.
-Standardwerte kommen dort zum Einsatz, wo Attribute fehlen, um sinnvolle und einheitliche Einstellungen zu gewährleisten.
-Feste Werte werden verwendet, um Abweichungen frühzeitig zu erkennen und als Fehler zu kennzeichnen.
 
 
 \section{Transformationen}
@@ -423,14 +452,12 @@ Für die FOP-Transformation wurde hauptsächlich die XSLT für den HTML-Output w
 
 Der einzige Unterschied besteht in der Behandlung des $\Omega$. Dieses musste im Vergleich zu HTML und zu den anderen Zeichen des Dokuments stets um 0.145\,em nach oben verschoben werden, da es sonst eine halbe Zeile zu tief steht.
 
-%\subsection{DocBook-Transformation}
-%Die DocBook-Transformation ist nicht so flexibel wie die vorherigen Ansätze. Durch die Verwendung von XML kann nur die jeweils vorgegebene Datei transformiert werden. Auch hier wurde für jede Produktfamilie eine Tabelle erstellt, die jedoch mit vordefinierten Werten gefüllt ist.
+
 
 \subsection{Vergleich der Transformationen}
-Die erste Transformation wandelt eine XML in ein HTML-Dokument, wohingegen die zweite Transformation ein FO erzeugt, das als PDF gerendert werden kann.%; die DocBook-Transformation verfolgt hingegen einen stärker statischen Ansatz.
+Die erste Transformation wandelt eine XML in ein HTML-Dokument, wohingegen die zweite Transformation ein FO erzeugt, das als PDF gerendert werden kann.
 
-Zudem sind die ersten beiden Transformationen sehr generisch -- mit ihnen kann stets das angestrebte Output-Dokument erzeugt werden, sofern die Input-XML den in \autoref{sec:datensatz} erläuterten Anforderungen genügt.% Die Datei für die DocBook-Transformation muss hingegen für jede XML neu entworfen werden, da dieses Verfahren nicht so allgemein einsetzbar ist wie die beiden anderen.
-
+Beide Transformationen sind sehr generisch -- mit ihnen kann stets das angestrebte Output-Dokument erzeugt werden, sofern die übergebene XML den in \autoref{sec:datensatz} erläuterten Anforderungen der Schemadatei genügt.
 
 \section{Programmierung}
 \label{sec:Programmierung}
@@ -440,3 +467,4 @@ Um die geforderte Validierung, Abfrage und Transformation der XML-Datei zu ermö
 
 
 \end{document}
+
