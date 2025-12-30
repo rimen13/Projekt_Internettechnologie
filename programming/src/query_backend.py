@@ -8,9 +8,6 @@ def query_backend(xml_path):
     execute predefined xpath queries on a validated xml document
     """
 
-    # print a visible header for the query section
-    print("\n=== QUERY ===")
-
     # define the namespace mapping used inside the xml
     NS = {"p": "http://www.electronics.com/products"}
 
