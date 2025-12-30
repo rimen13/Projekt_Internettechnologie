@@ -142,7 +142,13 @@ Der dritte Aufgabenteil setzt sich mit der XML-Programmierung auseinander. Dabei
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[>=Stealth, thick, node distance=2.5cm and 3cm]
+\begin{tikzpicture}[
+    >=Stealth,
+    thick,
+    node distance=2.8cm and 2.5cm,
+    scale=0.85,
+    transform shape
+]
 
 % ---------------- Parameter ----------------
 \def\filewidth{1.8}
@@ -150,8 +156,8 @@ Der dritte Aufgabenteil setzt sich mit der XML-Programmierung auseinander. Dabei
 \def\fold{0.5}
 \def\scale{1}
 
-% ---------------- XML ----------------
-\node (xml) at (0,0) {
+% ---------- Makro für Dateiblock ----------
+\newcommand{\fileblock}[1]{%
 \begin{tikzpicture}[x=\scale cm,y=\scale cm]
 \draw[fill=white]
 (0,0) -- (0,\fileheight) --
@@ -164,152 +170,41 @@ Der dritte Aufgabenteil setzt sich mit der XML-Programmierung auseinander. Dabei
 (\filewidth,\fileheight-\fold) -- cycle;
 \draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
 \node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {XML};
+at (\filewidth/2,\fileheight/2) {#1};
 \end{tikzpicture}
-};
+}
 
-% ---------------- XSD ----------------
-\node (xsd) [below=5cm of xml] {
-\begin{tikzpicture}[x=\scale cm,y=\scale cm]
-\draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
-\draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {XSD};
-\end{tikzpicture}
-};
+% ================= Erste Ebene =================
+\node (xml) at (0,0) {\fileblock{XML}};
+\node (xsd) [right=6cm of xml] {\fileblock{XSD}};
 
 \draw[<->] (xml) -- (xsd);
 
-% ---------------- XSLT ----------------
-\node (xslt) [right=of xml] {
-\begin{tikzpicture}[x=\scale cm,y=\scale cm]
-\draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
-\draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {XSLT};
-\end{tikzpicture}
-};
+% ================= Zweite / Dritte Ebene =================
+\node (xslt) [below left=of xml] {\fileblock{XSLT}};
+\node (xsl)  [below right=of xml] {\fileblock{XSL}};
 
-% ---------------- DocBook ----------------
-\node (docbook) [below=5cm of xslt] {
-\begin{tikzpicture}[x=\scale cm,y=\scale cm]
-\draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
-\draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {DocBook};
-\end{tikzpicture}
-};
-
-% ---------------- HTML ----------------
-\node (html) [right=of xslt] {
-\begin{tikzpicture}[x=\scale cm,y=\scale cm]
-\draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
-\draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {HTML};
-\end{tikzpicture}
-};
-
-% ---------------- PDF ----------------
-\node (pdf) [right=of docbook] {
-\begin{tikzpicture}[x=\scale cm,y=\scale cm]
-\draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
-\draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {PDF};
-\end{tikzpicture}
-};
-
-% ---------------- XSL-FO (ECHT ZENTRIERT) ----------------
-\node (fo) at ($(xslt)!0.5!(docbook)$) {
-\begin{tikzpicture}[x=\scale cm,y=\scale cm]
-\draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
-\draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {XSL--FO};
-\end{tikzpicture}
-};
-
-% ---------------- Pfeile ----------------
 \draw[->] (xml) -- (xslt);
-\draw[->] (xml) -- (docbook);
+\draw[->] (xml) -- (xsl);
+
+% ================= Vierte / Fünfte Ebene =================
+\node (html) [below=of xslt] {\fileblock{HTML}};
+\node (fo)   [below=of xsl]  {\fileblock{XSL--FO}};
+
 \draw[->] (xslt) -- (html);
-\draw[->] (xml) -- (fo);
+\draw[->] (xsl) -- (fo);
+
+% ================= Sechste / Siebte Ebene =================
+\node (pdf) [below=of fo] {\fileblock{PDF}};
 \draw[->] (fo) -- (pdf);
-\draw[->] (docbook) -- (pdf);
 
 \end{tikzpicture}
-\caption{Übersicht der Dokumenttypen und Transformationspfade}
+\caption{Transformations- und Validierungsbeziehungen zwischen XML-basierten Dokumentformaten}
 \label{fig:files}
 \end{figure}
 
 
-\subsection{Projektstruktur}
 
-In \autoref{tab:Dateiübersicht} sind alle Dateien dargestellt, die die Daten selbst abbilden, Transformationen ermöglichen oder Ergebnisse der Transformationen sind.
-
-\begin{table}[htbp]
-    \begin{tabular}{|l|l|}
-        \hline
-        Products.xml & XML-Datenquelle mit Produktinformationen \\ \hline
-        Products.xsd & XML-Schema zur Validierung der Produktdaten \\ \hline
-        Products.xslt & XSLT-Stylesheet zur Transformation von XML nach HTML \\ \hline
-        Products.html & Ergebnisdokument im HTML-Format \\ \hline
-        Products.xsl & XSL-FO-Stylesheet zur Erzeugung von Layout/Formatierung \\ \hline
-        Products.fo & Zwischenformat mit XSL-FO für PDF-Erstellung \\ \hline
-        Products.pdf & Enddokument im PDF-Format \\ \hline
-        %Products\_DocBook.xml & XML-Dokument im DocBook-Format \\ \hline
-        %Products2.fo & Zweites XSL-FO-Dokument für alternative PDF-Ausgabe \\ \hline
-        %Products2.pdf & Zweite PDF-Ausgabe basierend auf Products2.fo \\ \hline
-    \end{tabular}
-    \caption{Dateiübersicht}
-    \label{tab:Dateiübersicht}
-\end{table}
 
 Für dieses Projekt wurde ein GitHub-Repositorium angelegt, dass diese Dateien enthält. Es gibt ein Verzeichnis \texttt{docs} mit der Dokumentation (als tex- und pdf-Dokument). Das Verzeichnis \texttt{xml-pipeline} enthält die für \autoref{sec:Datensatz} und \autoref{sec:Transformationen} relevanten Dateien. Der Ordner \texttt{programming} beinhaltet die Dateien für \autoref{sec:Programmierung}.
 
