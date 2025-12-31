@@ -134,13 +134,13 @@ twoside = false
 
 Als Grundlage dieses Projekts dient das Anlegen eines XML-Datensatzes. Dieser sollte aus mehreren Objekten mit jeweils mindestens einem Attribut und einer Datensequenz bestehen. Die anschließende Aufgabe besteht im Erstellen einer XSD-Schemadatei. Damit kann validiert werden, ob die gegebene XML-Datei die gewünschte Struktur erfüllt und alle benötigten Angaben enthält. Darüber hinaus soll eine in \textit{EditiX} automatisch generierte XSD-Schemadatei erstellt werden.
 
-Der zweite Teil des Projekts befasst sich mit der Transformation der XML-Datei. Zunächst sollen die Daten auf einer HTML-Seite dargestellt werden. Dazu muss zunächst die XSLT-Transformationsdatei erzeugt werden. Darüber hinaus soll die Transformation in eine PDF erfolgen. Hierfür wurde die FOP-Transformation eingesetzt. Eine übersichtliche Darstellung dieser Transformationen zeigt Abbildung \ref{fig:files}.
+Der zweite Teil des Projekts befasst sich mit der Transformation der XML-Datei. Zunächst sollen die Daten auf einer HTML-Seite dargestellt werden. Dazu muss zunächst die XSLT-Transformationsdatei erzeugt werden. Darüber hinaus soll die Transformation in eine PDF erfolgen. Hierfür wurde die FOP-Transformation eingesetzt. Eine übersichtliche Darstellung dieser Transformationen zeigt \autoref{fig:files}.
 
-Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll eine Apllikation erstellt werden, welche die Validierung, Abfrage und Transformation der XML-Datei ermöglicht. \\
+Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll eine Apllikation erstellt werden, welche die Validierung, Abfrage und Transformation der XML-Datei ermöglicht.\\
 
 \enlargethispage{1\baselineskip}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}[>=Stealth, thick]
 
@@ -152,21 +152,6 @@ Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll
 
 \def\dx{3.3}     % horizontaler Abstand
 \def\dy{2.5}       % vertikaler Versatz der Pfade
-\def\split{1.5}    % Länge bis zur Aufteilung der Pfeile
-
-% ---------------- XSD ----------------
-\node (xsd) at (-\dx,0) {
-\begin{tikzpicture}[x=\scale cm,y=\scale cm]
-\draw[fill=white]
-(0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
-(\filewidth,\fileheight-\fold)--(\filewidth,0)--cycle;
-\draw[fill=white]
-(\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
-(\filewidth,\fileheight-\fold)--cycle;
-\draw (\filewidth-\fold,\fileheight)--(\filewidth,\fileheight-\fold);
-\node at (\filewidth/2,\fileheight/2) {XSD};
-\end{tikzpicture}
-};
 
 % ---------------- XML (Mittellinie) ----------------
 \node (xml) at (0,0) {
@@ -179,6 +164,20 @@ Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll
 (\filewidth,\fileheight-\fold)--cycle;
 \draw (\filewidth-\fold,\fileheight)--(\filewidth,\fileheight-\fold);
 \node at (\filewidth/2,\fileheight/2) {XML};
+\end{tikzpicture}
+};
+
+% ---------------- XSD ----------------
+\node (xsd) [below=of xml] {
+\begin{tikzpicture}[x=\scale cm,y=\scale cm]
+\draw[fill=white]
+(0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
+(\filewidth,\fileheight-\fold)--(\filewidth,0)--cycle;
+\draw[fill=white]
+(\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
+(\filewidth,\fileheight-\fold)--cycle;
+\draw (\filewidth-\fold,\fileheight)--(\filewidth,\fileheight-\fold);
+\node at (\filewidth/2,\fileheight/2) {XSD};
 \end{tikzpicture}
 };
 
@@ -206,7 +205,7 @@ Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll
 \draw[fill=white]
 (\filewidth-\fold,\fileheight)--(\filewidth-\fold,\fileheight-\fold)--
 (\filewidth,\fileheight-\fold)--cycle;
-\node at (\filewidth/2,\fileheight/2) {XSL--FO};
+\node at (\filewidth/2,\fileheight/2) {FO};
 \end{tikzpicture}
 };
 
@@ -223,7 +222,7 @@ Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll
 };
 
 % ---------------- Oberer Pfad: XSLT → HTML ----------------
-\node (xslt) at (1.5*\dx,\dy) {
+\node (xslt) at (\dx,\dy) {
 \begin{tikzpicture}[x=\scale cm,y=\scale cm]
 \draw[fill=white]
 (0,0)--(0,\fileheight)--(\filewidth-\fold,\fileheight)--
@@ -249,12 +248,9 @@ Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll
 };
 
 % ---------------- Pfeile: horizontale Aufteilung ----------------
-\coordinate (split) at (\split,0);
 
-\draw (xml.east) -- (split);
-
-\draw[->] (split) |- (xslt.west);
-\draw[->] (split) |- (xsl.west);
+\draw[->] (xml.north east) -- (xslt.west);
+\draw[->] (xml.south east) -- (xsl.west);
 
 \draw[->] (xsl) -- (fo);
 \draw[->] (fo) -- (pdf);
@@ -264,75 +260,6 @@ Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll
 \end{tikzpicture}
 \caption{Übersicht der Dokumenttypen und Transformationspfade}
 \label{fig:files}
-\end{figure}
-
-
-
-
-
-
-
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[
-    >=Stealth,
-    thick,
-    node distance=1cm and 1cm,
-    transform shape
-]
-
-% ---------------- Parameter ----------------
-\def\filewidth{1.8}
-\def\fileheight{2.7}
-\def\fold{0.5}
-\def\scale{1}
-
-% ---------- Makro für Dateiblock ----------
-\newcommand{\fileblock}[1]{%
-\begin{tikzpicture}[x=\scale cm,y=\scale cm]
-\draw[fill=white]
-(0,0) -- (0,\fileheight) --
-(\filewidth-\fold,\fileheight) --
-(\filewidth,\fileheight-\fold) --
-(\filewidth,0) -- cycle;
-\draw[fill=white]
-(\filewidth-\fold,\fileheight) --
-(\filewidth-\fold,\fileheight-\fold) --
-(\filewidth,\fileheight-\fold) -- cycle;
-\draw (\filewidth-\fold,\fileheight) -- (\filewidth,\fileheight-\fold);
-\node[anchor=center, text width=\filewidth cm, align=center]
-at (\filewidth/2,\fileheight/2) {#1};
-\end{tikzpicture}
-}
-
-% ================= Erste Ebene =================
-\node (xml) at (0,0) {\fileblock{XML}};
-\node (xsd) [right=1cm of xml] {\fileblock{XSD}};
-
-\draw[<->] (xml) -- (xsd);
-
-% ================= Zweite / Dritte Ebene =================
-\node (xslt) [below left=of xml] {\fileblock{XSLT}};
-\node (xsl)  [below right=of xml] {\fileblock{XSL}};
-
-\draw[->] (xml) -- (xslt);
-\draw[->] (xml) -- (xsl);
-
-% ================= Vierte / Fünfte Ebene =================
-\node (html) [below=of xslt] {\fileblock{HTML}};
-\node (fo)   [below=of xsl]  {\fileblock{XSL--FO}};
-
-\draw[->] (xslt) -- (html);
-\draw[->] (xsl) -- (fo);
-
-% ================= Sechste / Siebte Ebene =================
-\node (pdf) [below=of fo] {\fileblock{PDF}};
-\draw[->] (fo) -- (pdf);
-
-\end{tikzpicture}
-\caption{Transformations- und Validierungsbeziehungen zwischen XML-basierten Dokumentformaten}
-\label{fig:files2}
 \end{figure}
 
 
