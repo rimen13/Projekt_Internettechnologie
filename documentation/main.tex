@@ -265,10 +265,10 @@ Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll
 
 
 \subsection{Grundlegende Informationen}
-Für eine einfachere Bearbeitung dieses Projekts und zur Versionskontrolle wurde ein \textit{GitHub-Repository} erstellt. Dieses vereinfacht insbesondere die Zusammenarbeit mehrerer Teilnehmer. Das \textit{Repository} enthält alle angehängten Dateien und ermöglicht den Zugriff auf ältere Zwischenstände.
 
+Für eine einfachere Bearbeitung dieses Projekts und zur Versionskontrolle wurde ein \textit{GitHub-Repository} erstellt. Dieses vereinfacht insbesondere die Zusammenarbeit mehrerer Teilnehmer und ist unter dem Link \textit{https://github.com/rimen13/Projekt\_Internettechnologie} erreichbar. Das \textit{Repository} enthält alle angehängten Dateien und ermöglicht den Zugriff auf ältere Zwischenstände. \autoref{fig:projektordnerstruktur} die Struktur der angehängten Dateien, welche aus dem GitHub-Repository hervorgeht.
 
-Abb. %\ref{tab:overview_files} die Struktur der angehängten Dateien im GitHub-Repositorium.
+Für dieses Projekt Moodle-Unterlagen für das Modul Internettechnologien verwendet. Für die Preise und Stückzahlen der einzelnen elektronischen Bauteile in der XML-Datei wurden die Websiten \textit{https://www.digikey.de} und \textit{https://www.mouser.de} herangezogen.
 
 \begin{figure}[H]
 \centering
@@ -282,6 +282,7 @@ for tree={
     align=left,
     tier/.option=level,
     inner xsep=1.5pt,
+    %scale=0.5,
     edge path={
         \noexpand\path [draw, \forestoption{edge}]
         (!u.parent anchor) -- +(5pt,0) |- (.child anchor)\forestoption{edge label};
@@ -303,8 +304,7 @@ for tree={
         ]
     ]
     [documentation, parent anchor=east, child anchor=west
-        [main.tex]
-        [main.pdf]
+        [documentation.pdf]
     ]
     [programming, parent anchor=east, child anchor=west
         [output, parent anchor=east, child anchor=west
@@ -329,27 +329,24 @@ for tree={
 \label{fig:projektordnerstruktur}
 \end{figure}
 
-Für dieses Projekt wurden folgende Quellen verwendet:
-
-\begin{itemize}
-    \item Moodle-Unterlagen für das Modul Internettechnologien
-    \item https://www.digikey.de
-    \item https://www.mouser.de
-\end{itemize}
-
 
 
 \section{Datensatz} \label{sec:datensatz}
 
+\subsection{XML-Datei}
+
 Als Thema für den Beispieldatensatz wurden in diesem Projekt elektronische Bauteile eines fiktiven Elektronikshops gewählt. Der vollständige Datensatz dieses Projekts ist in der Datei \textit{products.xml} enthalten. Er umfasst 9 Objekte, davon 3 Widerstände, 2 Spulen, 2 Kondensatoren sowie 2 Dioden. Hintergrund ist, dass die vorhandenen Daten auf einer Produkt-Website dargestellt werden können. Beim Inhalt des Datensatzes wurde sich deshalb auf die dafür wichtigsten Daten konzentriert. Das Root-Element ist \textit{Products}, das alle \textit{Product}-Elemente enthält. Diese können über den Eintrag im \textit{id}-Attribut eindeutig identifiziert werden. Jedes dieser \textit{Product}-Elemente umfasst die Elemente Anzahl, Preis und Hersteller sowie, abhängig vom mit dem \textit{type}-Attribut spezifizierten Bauteil, eine oder zwei bauteilspezifische Datensequenzen. Diese beinhalten die physikalischen Größen des jeweiligen Bauteils, wobei der Wert, die Einheit und die Toleranz angegeben werden. Sie kann mithilfe des \textit{unit}-Attributs relativ (bspw. mit \%) oder absolut eingestellt werden. Die Einheit des Preises kann ebenfalls mit einem \textit{unit}-Attribut definiert werden. Die Bezeichnung dieser Datensequenz ist für jedes Bauteil spezifisch. Während die Widerstände, Spulen und Kapazitäten jeweils nur eine spezifische physikalische Größe umfassen, können für Dioden mehrere angegeben werden. Diese konkrete Zuordnung der physikalischen Größen vereinfacht die anschließende Validierung der XML-Datei mit der XSD-Schemadatei.
 
-Das zugehörige Schema befindet sich in \texttt{products.xsd}. Es definiert Struktur, Reihenfolge und Häufigkeit der verwendeten Elemente. Das Schema dient dazu, die Angaben in der XML-Datei auf formale Richtigkeit zu überprüfen. Damit kann sichergestellt werden, dass die geforderten Angaben in der XML-Datei gemacht wurden. Diese Richtigkeit ist für die Transformation in andere Datenformate unerlässlich. Außerdem kann überprüft werden, ob die angegebenen Datentypen korrekt sind. Die erstellte XSD-Datei dieses Projekts ist in \textit{products.xsd} zu finden. Beim Entwurf des XSD-Schemas wurde darauf geachtet, jedes Element über einen eigenen Typ zu kapseln, sodass spätere Änderungen gezielt und unabhängig vorgenommen werden können. Die verwendeten Datentypen wurden bewusst gewählt, um eine valide und konsistente Datenstruktur sicherzustellen. Standardwerte kommen dort zum Einsatz, wo Attribute fehlen, um sinnvolle und einheitliche Einstellungen zu gewährleisten. Feste Werte werden verwendet, um Abweichungen frühzeitig zu erkennen und als Fehler zu kennzeichnen. Darüber hinaus wurde die Datei \textit{products-automatic-generated.xsd} automatisch durch die Dokumentenerstellung mit \textit{EditiX} erzeugt. Diese Datei ist jedoch nicht so präzise wie \textit{products.xsd}.Es können nicht an allen Stellen die gewünschten Datentypen angegeben werden. Außerdem ist es nicht möglich, ein \textit{choice}-Element zu verwenden. Es wird daher empfohlen, zur Validierung der XML-Datei die XSD-Datei \textit{products.xsd} zu verwenden.
+\subsection{XSD-Schemadatei}
+
+Das zugehörige Schema befindet sich in \texttt{products.xsd}. Es definiert Struktur, Reihenfolge und Häufigkeit der verwendeten Elemente. Das Schema dient dazu, die Angaben in der XML-Datei auf formale Richtigkeit zu überprüfen. Damit kann sichergestellt werden, dass die geforderten Angaben in der XML-Datei gemacht wurden. Diese Richtigkeit ist für die Transformation in andere Datenformate unerlässlich. Außerdem kann überprüft werden, ob die angegebenen Datentypen korrekt sind. Die erstellte XSD-Datei dieses Projekts ist in \textit{products.xsd} zu finden. Beim Entwurf des XSD-Schemas wurde darauf geachtet, jedes Element über einen eigenen Typ zu kapseln, sodass spätere Änderungen gezielt und unabhängig vorgenommen werden können. Die verwendeten Datentypen wurden bewusst gewählt, um eine valide und konsistente Datenstruktur sicherzustellen. Standardwerte kommen dort zum Einsatz, wo Attribute fehlen, um sinnvolle und einheitliche Einstellungen zu gewährleisten. Feste Werte werden verwendet, um Abweichungen frühzeitig zu erkennen und als Fehler zu kennzeichnen. Darüber hinaus wurde die Datei \textit{products-automatic-generated.xsd} automatisch durch die Dokumentenerstellung mit \textit{EditiX} erzeugt. Diese Datei ist jedoch nicht so präzise wie \textit{products.xsd}. Es können nicht an allen Stellen die gewünschten Datentypen angegeben werden. Außerdem ist es nicht möglich, ein \textit{choice}-Element zu verwenden. Es wird daher empfohlen, zur Validierung der XML-Datei die XSD-Datei \textit{products.xsd} zu verwenden.
 
 
 
-\section{Transformationen}
-\label{sec:Transformationen}
+\section{Transformationen} \label{sec:Transformationen}
+
 \subsection{XSLT von XML in HTML}
+
 Um die XML in HTML transformieren zu können, wurde \texttt{products.xslt} erstellt. Die tabellenförmige Ausgabe wurde getrennt für Widerstände, Spulen und Kondensatoren sowie für Dioden vorgenommen, da für erstere jeweils eine physikalische Größe angegeben ist, für letztere zwei physikalische Größen sowie der Untertyp.
 
 Die physikalischen Größen selbst wurden mit einem gemeinsamen Template ausgewertet, da alle einen Wert und eine Einheit sowie einen optionalen Exponenten und eine optionale Toleranz aufweisen. Mit einer \texttt{xsl:when}-Abfrage wurde sichergestellt, dass bei Abwesenheit einer Toleranz dieses Feld mit einem Bindestrich gefüllt wird. Da das Feld für die physikalische Größe in der entsprechenden Tabelle jedoch auch ohne einen explizit vorgegebenen Exponenten korrekt ausgefüllt wird und alle weiteren Angaben in der Tabelle obligatorisch sind, ist dieses Vorgehen nur für die Toleranz notwendig.
@@ -357,21 +354,22 @@ Die physikalischen Größen selbst wurden mit einem gemeinsamen Template ausgewe
 Im Allgemeinen wurden die Templates so generisch wie möglich erstellt, um eine hohe Flexibilität für mögliche Veränderungen zu gewährleisten.
 
 \subsection{FOP-Transformation}
+
 Für die FOP-Transformation wurde hauptsächlich die XSLT für den HTML-Output wiederverwendet, da die gleichen Informationen mittels XPath ermittelt wurden. Es wurde lediglich die HTML-Syntax durch FO-Syntax ersetzt, zusätzlich wurde ein Master-Layout definiert.
 
 Der einzige Unterschied besteht in der Behandlung des $\Omega$. Dieses musste im Vergleich zu HTML und zu den anderen Zeichen des Dokuments stets um 0.145\,em nach oben verschoben werden, da es sonst eine halbe Zeile zu tief steht.
 
 
 
-\subsection{Vergleich der Transformationen}
-Die erste Transformation wandelt eine XML in ein HTML-Dokument, wohingegen die zweite Transformation ein FO erzeugt, das als PDF gerendert werden kann.
+%\subsection{Vergleich der Transformationen}
 
-Beide Transformationen sind sehr generisch -- mit ihnen kann stets das angestrebte Output-Dokument erzeugt werden, sofern die übergebene XML den in \autoref{sec:datensatz} erläuterten Anforderungen der Schemadatei genügt.
+% Die erste Transformation wandelt eine XML in ein HTML-Dokument, wohingegen die zweite Transformation ein FO erzeugt, das als PDF gerendert werden kann.
+
+Die beiden durchgeführten Transformationen sind sehr generisch -- mit ihnen kann stets das angestrebte Output-Dokument erzeugt werden, sofern die übergebene XML den in \autoref{sec:datensatz} erläuterten Anforderungen der Schemadatei genügt.
 
 
 
-\section{Programmierung}
-\label{sec:Programmierung}
+\section{Programmierung} \label{sec:Programmierung}
 
 \subsection{Grundlegende Informationen}
 
@@ -421,8 +419,6 @@ Bei der Abfrage werden gezielt Informationen aus einem XML-Dokument extrahiert, 
 Führt man die Datei \texttt{query\_from\_project.py} für den Projektmodus aus, dann wird in der Kommandozeile folgendes ausgegeben:
 
 \begin{verbatim}
-=== QUERY ===
-
 Query 1: Retrieve all product IDs.
 Result: ['R001', 'R002', 'R003', 'L001', 'L002', 'C001', 'C002', 
         'D001', 'D002']
@@ -463,5 +459,3 @@ HTML generated: products.html
 Im Unterordner \textit{programming/output} befindet sich bereits die HTML-Datei, die durch die durchgeführte Transformation für die im Projekt gegebenen Dokumente entstanden ist.
 
 \end{document}
-
-
