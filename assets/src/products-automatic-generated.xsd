@@ -61,7 +61,7 @@
 		<xs:complexType>
 			<xs:simpleContent>
 				<xs:extension base="xs:string">
-					<xs:attribute name="unit" type="xs:decimal" use="required"/>
+					<xs:attribute name="unit" type="xs:string" use="required"/>
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
@@ -89,7 +89,7 @@
 		<xs:complexType>
 			<xs:simpleContent>
 				<xs:extension base="xs:string">
-					<xs:attribute name="unit" type="xs:decimal" use="required"/>
+					<xs:attribute name="unit" type="xs:string" use="required"/>
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
