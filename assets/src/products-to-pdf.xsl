@@ -248,7 +248,7 @@
         <xsl:if test=". = -9">n</xsl:if>
         <xsl:if test=". = -6">&#181;</xsl:if>
         <xsl:if test=". = -3">m</xsl:if>
-        <xsl:if test=". = 0"> </xsl:if>
+        <xsl:if test=". = 0"></xsl:if>
         <xsl:if test=". = 3">k</xsl:if>
         <xsl:if test=". = 6">k</xsl:if>
         <xsl:if test=". = 9">M</xsl:if>
