@@ -95,47 +95,53 @@ twoside = false
 
 \newpage
 
-
 % Inhaltsverzeichnis
 \tableofcontents
-
-\thispagestyle{empty}
 
 \vspace{2cm}
 
 % Abbildungsverzeichnis
 
-\begin{longtable}[l]{@{}ll@{}}
-\textbf{Abkürzung} & \textbf{Bedeutung} \\[1.2ex]
+\section*{Abkürzungsverzeichnis}
 
-FO &  \\
-HMTL &  \\
-PDF &  \\
-XML &  \\
-XSD &  \\
-XSL &  \\
-XSLT &  \\
+\renewcommand{\arraystretch}{1.5}
+
+\begin{longtable}[l]{@{}ll@{}}
+\textbf{Abkürzung} & \textbf{Bedeutung} \\[1mm]
+
+FO & Formatting Objects \\ 
+HTML & HyperText Markup Language \\ 
+PDF & Portable Document Format \\ 
+XML & eXtensible Markup Language \\ 
+XSD & XML Schema Definition \\ 
+XSL & eXtensible Stylesheet Language \\ 
+XSLT & XSL Transformations \\
 
 \end{longtable}
 
-\newpage
+\renewcommand{\arraystretch}{1}
+
+% Römische Seitennummerierung starten
+\pagenumbering{Roman}
 \setcounter{page}{1}
 
-% =================================================
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+
+
+
 % Hauptteil
-% =================================================
 
 \section{Projekübersicht}
 
-
-
-
-
 \subsection{Zielstellung}
 
-Als Grundlage dieses Projekts dient das Anlegen eines XML-Datensatzes, der aus mehreren Objekten besteht. Diese sollen jeweils mindestens ein Attribut sowie eine Datensequenz enthalten. Auf Basis dieses Datensatzes wird eine XSD-Datei erstellt, sodass die XML-Datei validiert werden kann. Dabei wird überprüft, ob die XML-Datei der definierten Struktur entspricht und alle erforderlichen Angaben enthalten sind. Zusätzlich wird eine XSD-Datei mithilfe der in \textit{EditiX} integrierten automatischen Dokumenterstellung generiert.
+Als Grundlage dieses Projekts dient das Anlegen eines XML-Datensatzes, der aus mehreren Objekten besteht. Jedes Objekt soll mindestens ein Attribut sowie eine Datensequenz enthalten. Auf Basis dieses Datensatzes wird eine XSD-Datei erstellt, sodass die XML-Datei validiert werden kann. Dabei wird überprüft, ob die XML-Datei der definierten Struktur entspricht und alle erforderlichen Angaben enthalten sind. Zusätzlich wird eine XSD-Datei mithilfe der in \textit{EditiX} integrierten automatischen Dokumenterstellung generiert.
 
-Der zweite Teil des Projekts befasst sich mit der Transformation der XML-Datei in zwei unterschiedliche Ausgabeformate. Zunächst sollen die Daten aus der XML-Datei in Form einer HTML-Seite dargestellt werden, wofür eine XSLT-Transformationsdatei erstellt werden muss. Darüber hinaus erfolgt die FOP-Transformation, sodass aus der XML-Datei eine PDF-Datei generiert wird. Eine schematische Übersicht dieser Transformationen zeigt \autoref{fig:files}.
+Der zweite Teil des Projekts befasst sich mit der Transformation der XML-Datei in zwei unterschiedliche Ausgabeformate. Zunächst sollen die Daten aus der XML-Datei in Form einer HTML-Seite dargestellt werden, wofür eine XSLT-Transformationsdatei erstellt werden muss. Darüber hinaus wird eine FOP-Transformation, um aus der XML-Datei eine PDF-Datei zu generieren. Eine schematische Übersicht dieser Transformationen zeigt \autoref{fig:files}.
 
 Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll eine Applikation erstellt werden, welche die Validierung, Abfrage und Transformation der XML-Datei ermöglicht.
 
@@ -270,7 +276,7 @@ Der dritte Aufgabenteil beschäftigt sich mit der XML-Programmierung. Dabei soll
 Zur strukturierten Umsetzung des Projekts sowie zur Sicherstellung einer nachvollziehbaren Versionsverwaltung wurde ein öffentlich zugängliches \textit{GitHub-Repository} unter \url{https://github.com/rimen13/Projekt_Internettechnologie} eingerichtet. Die Gliederung der Projektdateien ergibt sich folgendermaßen:
 
 \vspace{-5mm}
-{\footnotesize
+{\fontsize{11pt}{11pt}\selectfont
 \begin{verbatim}
 project/
 |-- assets/
@@ -280,6 +286,7 @@ project/
 |   |   |-- products-automatic-generated.xsd
 |   |   |-- products-to-html.xslt
 |   |   |-- products-to-pdf.xsl
+|   |   |-- products-validation.xml
 |   |-- output/
 |       |-- products.html
 |       |-- products.fo
@@ -303,7 +310,7 @@ project/
 \end{verbatim}
 }
 
-Als Entwicklungswerkzeuge kamen der XML-Editor \textit{EditiX} zur Erstellung der Dateien im Ordner \texttt{assets} sowie \textit{Visual Studio Code} als integrierte Entwicklungsumgebung zur Umsetzung der XML-Programmierung zum Einsatz. Die inhaltliche Ausarbeitung orientiert sich an den Modul-Unterlagen auf Moodle. Die in der XML-Datei verwendeten Preise und Stückzahlen der elektronischen Bauteile basieren auf den Angaben der Websiten \url{https://www.digikey.de} und \url{https://www.mouser.de}. Als Unterstützung beim Sprachstil der Dokumentation, der FO-Syntax und der Programmierung wurde ChatGPT als Unterstützung verwendet. Außerdem wurde das Buch Beginning XML (4. Auflage) von David Hunter et al. (2007) verwendet.
+Als Entwicklungswerkzeuge kamen der XML-Editor \textit{EditiX} zur Erstellung der Dateien im Ordner \texttt{assets} sowie \textit{Visual Studio Code} als integrierte Entwicklungsumgebung zur Umsetzung der XML-Programmierung zum Einsatz. Die inhaltliche Ausarbeitung orientiert sich an den Modul-Unterlagen auf Moodle. Die in der XML-Datei verwendeten Preise und Stückzahlen der elektronischen Bauteile basieren auf den Angaben der Websites \url{https://www.digikey.de} und \url{https://www.mouser.de}. Außerdem wurde ChatGPT als Unterstützung bei der sprachlichen Gestaltung der Dokumentation, der FO-Syntax und der Programmierung eingesetzt. Als fachliche Grundlage diente das Buch \glqq Beginning XML\grqq{} von David Hunter et al. (2007, 4. Auflage).
 
 
 
@@ -314,19 +321,19 @@ Als Entwicklungswerkzeuge kamen der XML-Editor \textit{EditiX} zur Erstellung de
 
 Als Beispieldatensatz für dieses Projekt wurde ein Katalog elektronischer Bauteile eines fiktiven Elektronikshops modelliert. Der vollständige Datensatz ist in der Datei \texttt{products.xml} abgelegt und umfasst insgesamt 9 unterschiedliche Bauteile (3 Widerstände, 2 Spulen, 2 Kondensatoren und 2 Dioden). Das XML-Dokument besitzt das Root-Element \textit{products}, unter dem alle \textit{product}-Elemente zusammengefasst sind. Jedes \textit{product}-Element repräsentiert ein einzelnes Bauteil und stellt damit ein Objekt des Datensatzes dar, welches über das Attribut \textit{id} eindeutig zu identifizieren ist. Zusätzlich wird über das Attribut \textit{type} der grundlegende Bauteiltyp spezifiziert, bei Dioden erweitert durch das Attribut \textit{subtype}. Unabhängig vom konkreten Bauteiltyp enthalten alle \textit{product}-Elemente eine einheitliche Menge an Kindelementen zur Beschreibung allgemeiner Produkteigenschaften. Diese sind die Anzahl (\textit{amount}), der Preis (\textit{price}) und der Hersteller (\textit{manufacturer}). Über das \textit{unit}-Attribut lässt sich der Preis mit unterschiedlichen Währungseinheiten angeben.
 
-Ergänzend zu diesen allgemeinen Angaben besitzt jedes Produkt ein oder zwei bauteilspezifische Datensequenzen, welche die relevanten physikalischen Kenngrößen modellieren. Die Bezeichnung dieser Sequenzen ist vom jeweiligen Bauteiltyp abhängig (\textit{resistance} für Widerstände, \textit{inductance} für Spulen oder \textit{capacitance} für Kondensatoren). Für Dioden können mehrere Kenngrößen angegeben werden (\textit{forwardVoltage} und \textit{reverseVoltage}). Diese Datensequenzen enthalten jeweils eine strukturierte Beschreibung des Zahlenwertes, bestehend aus Mantisse (\textit{value}), Exponent (\textit{exponent}), Einheit (\textit{unit}) sowie optional einer Toleranzangabe (\textit{tolerance}). Die Toleranz kann über ein \textit{unit}-Attribut entweder relativ (in Prozent) oder absolut angegeben werden. Diese explizite Zuordnung der physikalischen Größen zu den jeweiligen Bauteiltypen erleichtert die in Kapitel \ref{sec:xsd} beschriebene Validierung der XML-Datei mithilfe einer XSD-Datei.
+Ergänzend zu diesen allgemeinen Angaben besitzt jedes Produkt ein oder zwei bauteilspezifische Datensequenzen, welche die relevanten physikalischen Kenngrößen modellieren. Die Bezeichnung dieser Sequenzen ist vom jeweiligen Bauteiltyp abhängig (\textit{resistance} für Widerstände, \textit{inductance} für Spulen oder \textit{capacitance} für Kondensatoren). Für Dioden können mehrere Kenngrößen angegeben werden (\textit{forwardVoltage} und \textit{reverseVoltage}). Diese Datensequenzen enthalten jeweils eine strukturierte Beschreibung des Zahlenwertes, bestehend aus Mantisse (\textit{value}), Exponent (\textit{exponent}), Einheit (\textit{unit}) sowie optional einer Toleranzangabe (\textit{tolerance}). Diese Toleranzangabe erfolgt über ein \textit{unit}-Attribut und kann entweder relativ (in Prozent) oder absolut angegeben werden. Diese explizite Zuordnung der physikalischen Größen zu den jeweiligen Bauteiltypen erleichtert die in Kapitel \ref{sec:xsd} beschriebene Validierung der XML-Datei mithilfe einer XSD-Datei.
 
 
 
 \subsection{XSD-Datei} \label{sec:xsd}
 
-Die manuell erstellte XSD-Datei \texttt{products.xsd} legt fest, welche Elemente, Attribute und Datentypen in der zu validierenden XML-Datei zulässig sind. Sie bildet damit die Grundlage für eine automatisierte Validierung der XML-Datei und stellt sicher, dass die definierten strukturellen und typbezogenen Anforderungen eingehalten werden.
+Die manuell erstellte XSD-Datei \texttt{products.xsd} legt fest, welche Elemente, Attribute und Datentypen in der zu validierenden XML-Datei zulässig sind. Sie bildet damit die Grundlage für eine automatisierte Validierung der XML-Datei und stellt sicher, dass die definierten strukturellen und typbezogenen Anforderungen eingehalten werden. Zur direkten Validierung der XML-Datei gegen diese XSD-Datei in \textit{EditiX} dient die XML-Datei \texttt{products-validation.xml}. Diese enthält einen Verweis auf die XSD-Datei \textit{products.xsd}, sodass die XML-Datei automatisch gegen die XSD-Datei validiert wird.
 
 Die Anzahl der \textit{product}-Elemente muss mindestens 1 betragen. Mithilfe von \textit{choice} werden die zulässigen Kombinationen der physikalischen Größen \textit{resistance}, \textit{inductance}, \textit{capacitance}, \textit{forwardVoltage} und \textit{reverseVoltage} zum jeweiligen Bauteil überprüft.
 
-Alle Produkte besitzen die gemeinsamen Attribute \textit{id}, \textit{type} und optional \textit{subtype}, die in einer \textit{attributeGroup} definiert sind. Die bauteilspezifischen Elemente werden jeweils durch einen eigenen \textit{complexType} beschrieben. Die Typisierung einfacher Elemente ohne Attribute erfolgt entweder direkt über die Schema-Datentypen wie \textit{float}, \textit{short} oder \textit{string}, oder über benutzerdefinierte simpleTypes bzw. complexTypes mit einfachem Inhalt, wie beispielsweise \textit{ExponentType}, \textit{ToleranceType} oder \textit{PriceType}. Für Attribute werden entweder Standardwerte definiert (z. B. \% bzw. EUR für \textit{unit} als Einheit der Toleranz bzw. der Währung) oder keine Vorgaben gemacht (z. B. für \textit{id}, \textit{type} und \textit{subtype}). Standardwerte sorgen für konsistente Voreinstellungen bei fehlenden Angaben, während feste Werte Abweichungen erkennen und als Fehler kennzeichnen.
+Alle Produkte besitzen die gemeinsamen Attribute \textit{id}, \textit{type} und optional \textit{subtype}, die in einer \textit{attributeGroup} definiert sind. Die bauteilspezifischen Elemente werden jeweils durch einen eigenen \textit{complexType} beschrieben. Die Typisierung einfacher Elemente ohne Attribute erfolgt entweder direkt über die Schema-Datentypen wie \textit{float}, \textit{short} oder \textit{string}, oder über benutzerdefinierte \textit{simpleTypes} bzw. \textit{complexTypes} mit einfachem Inhalt, wie beispielsweise \textit{ExponentType}, \textit{ToleranceType} oder \textit{PriceType}. Für Attribute werden entweder Standardwerte definiert (z. B. \% bzw. EUR für \textit{unit} als Einheit der Toleranz bzw. Währung) oder keine Vorgaben gemacht (z. B. für \textit{id}, \textit{type} und \textit{subtype}). Standardwerte sorgen für konsistente Voreinstellungen bei fehlenden Angaben, während feste Werte Abweichungen erkennen und als Fehler kennzeichnen.
 
-Der Exponent ist auf eine diskrete Menge vordefinierter Werte beschränkt, die durch drei teilbar sind und im Bereich von −12 bis 9 liegen. Diese Einschränkung wurde mithilfe einer \textit{enumeration} im benutzerdefinierten \textit{simpleType} \textit{ExponentType} umgesetzt, da ausschließlich diese Exponenten in den anschließenden Transformationen in Kapitel \ref{sec:Transformationen} in physikalische Vorsilben wie \textmu{}, m oder k überführt werden können.
+Der Exponent ist auf eine diskrete Menge vordefinierter Werte beschränkt, die ganzzahlige Vielfache von 3 sind und im Bereich von -12 bis 9 liegen. Diese Einschränkung wurde mit \textit{ExponentType} als \textit{enumeration} umgesetzt, da ausschließlich diese Exponenten in den anschließenden Transformationen in Kapitel \ref{sec:Transformationen} in physikalische Vorsilben wie \textmu{}, m oder k überführt werden können.
 
 Die Datei \texttt{products-automatic-generated.xsd} wurde durch die in \textit{EditiX} enthaltene automatische Dokumenterstellung generiert. Sie ist allerdings weniger präzise als die bereits beschriebene XSD-Datei. Dies kann damit begründet werden, dass bei der automatischen Generierung nicht die gleichen präzisen Typdefinitionen vorgenommen werden können. Außerdem ist in dieser XSD-Datei kein \textit{choice} enthalten und daher für die Validierung der XML-Datei nur eingeschränkt geeignet. Es wird daher empfohlen, zur Validierung der XML-Datei die XSD-Datei \texttt{products.xsd} zu verwenden. Insbesondere für die in Kapitel \ref{sec:Transformationen} beschriebenen Transformationen muss die XML-Datei die Anforderungen der XSD-Datei \texttt{products.xsd} erfüllen. Die Anforderungen aus der XSD-Datei \texttt{products-automatic-generated.xsd} sind nicht ausreichend.
 
@@ -338,15 +345,15 @@ Die Datei \texttt{products-automatic-generated.xsd} wurde durch die in \textit{E
 
 \subsection{XSLT-Transformation von XML zu HTML} \label{sec:xslt}
 
-Um die Daten aus der XML-Datei auf einer HTML-Website darstellen zu können, wurde eine Transformation mit der erstellten Datei \texttt{products.xslt} durchgeführt. Auf der resultierenden HTML-Website, die unter \texttt{products.html} abgelegt ist, wird für alle 4 Bauteilarten jeweils eine eigene Tabelle erstellt, in der die zugehörigen Bauteildaten angezeigt werden. Diese Tabellen sind zunächst zugeklappt und lassen sich durch das Anklicken Dreieck-Symbols ($\blacktriangleright \; \rightarrow \blacktriangledown$) aufklappen.
+Um die Daten aus der XML-Datei auf einer HTML-Website darstellen zu können, wurde eine Transformation mit der erstellten Datei \texttt{products-to-html.xslt} durchgeführt. Auf der resultierenden HTML-Website, die unter \texttt{products.html} abgelegt ist, wird für alle 4 Bauteilarten jeweils eine eigene Tabelle erstellt, in der die zugehörigen Bauteildaten angezeigt werden. Diese Tabellen sind zunächst zugeklappt und lassen sich durch Anklicken des Dreieck-Symbols ($\blacktriangleright \; \rightarrow \blacktriangledown$) aufklappen.
 
-Für die Ausgabe der Tabellen wird zwischen Widerständen, Spulen und Kapazitäten sowie Dioden unterschieden, da sich die Anzahl der angegebenen physikalischen Größen unterscheidet. Die Ausgabe der Bauteildaten erfolgt anhand eines Templates, welches für alle physikalischen Größen identisch ist. Dabei werden über \textit{XPath}-Ausdrücke die relevanten Informationen aus der XML-Datei extrahiert. Jede physikalische Größe enthält Mantisse, Exponent, Einheit und optional Toleranz. Die Exponenten werden dabei als physikalische Vorsilben interpretiert, z. B. $10^{-6}$ als \textmu{}. Mit einer \texttt{xsl:when}-Abfrage wird überprüft, ob der optionale Wert für die Toleranz vorhanden ist. Ist dies nicht der Fall, wird ein Bindestrich an der entsprechenden Stelle in der Tabelle angezeigt. Alle weiteren Angaben in der Tabelle sind, mit Ausnahme des Exponenten, obligatorisch und werden stets ausgegeben. Der Exponent ist optional und stellt lediglich einen Bestandteil der physikalischen Größe dar, ohne eine eigene Tabellenzelle zu belegen. Entsprechend ist auch ohne Angabe eines Exponenten eine korrekte Darstellung der Tabelle gewährleistet. \red{Ausdruck/ Satzstellung des letzten Satzes???}
+Für die Ausgabe der Tabellen wird zwischen Widerständen, Spulen und Kapazitäten sowie Dioden unterschieden, da sich die Anzahl der angegebenen physikalischen Größen unterscheidet. Die Ausgabe der Bauteildaten erfolgt anhand eines Templates, welches für alle physikalischen Größen identisch ist. Dabei werden über \textit{XPath}-Ausdrücke die relevanten Informationen aus der XML-Datei extrahiert. Jede physikalische Größe enthält Mantisse, Exponent, Einheit und optional Toleranz. Die Exponenten werden dabei als physikalische Vorsilben interpretiert, z. B. $10^{-6}$ als \textmu{}. Mit einer \texttt{xsl:when}-Abfrage wird überprüft, ob der optionale Wert für die Toleranz vorhanden ist. Ist dies nicht der Fall, wird ein Bindestrich an der entsprechenden Stelle in der Tabelle angezeigt. Alle weiteren Angaben in der Tabelle sind, mit Ausnahme des Exponenten, obligatorisch und werden stets ausgegeben. Der Exponent ist optional und stellt lediglich einen Bestandteil der physikalischen Größe dar, ohne eine eigene Tabellenzelle zu belegen. Dementsprechend ist auch ohne Angabe eines Exponenten eine korrekte Darstellung der Tabelle gewährleistet.
 
 
 
 \subsection{FOP-Transformation von XML zu PDF} \label{sec:fop}
 
-Die PDF-Ausgabe der Produktdaten erfolgt über eine FOP-Transformation. Die XSLT-Datei \texttt{products-to-html.xslt} wurde wiederverwendet, um die relevanten Informationen aus der XML-Datei mittels \textit{XPath} zu extrahieren. Die XSL-Transformation erfolgt anhand der XSL-Datei \texttt{products-to-pdf.xsl}, in der im Vergleich zur XSLT-Datei die HTML-Syntax durch FO-Syntax ersetzt und Layout-Anpassungen an der Darstellung vorgenommen wurden. Die Erstellung der FO-Datei \texttt{products.fo}, die FO-Transformation und die anschließende PDF-Erzeugung werden in \textit{EditiX} automatisch durchgeführt, sodass sich die PDF-Datei \texttt{products.pdf} ergibt.
+Die PDF-Ausgabe der Produktdaten erfolgt über eine FOP-Transformation. Die XSLT-Datei \texttt{products-to-html.xslt} wurde wiederverwendet, um die relevanten Informationen aus der XML-Datei mittels \textit{XPath} zu extrahieren. Die XSL-Transformation erfolgt anhand der XSL-Datei \texttt{products-to-pdf.xsl}, in der im Vergleich zur XSLT-Datei die HTML-Syntax durch FO-Syntax ersetzt und Layout-Anpassungen an der Darstellung vorgenommen wurden. Die Erstellung der FO-Datei \texttt{products.fo} und die FOP-Transformation erfolgt in \textit{EditiX} automatisch, sodass anschließend die PDF-Datei \texttt{products.pdf} generiert wird.
 
 Ein spezieller Anpassungspunkt besteht in der Darstellung des Symbols $\Omega$ als Einheit des Widerstands. Im Vergleich zu anderen Zeichen musste es um 0.145\,em nach oben verschoben werden, damit die Zeilenhöhe im Vergleich zu den vorherigen Zeichen erhalten bleibt.
 
@@ -446,5 +453,3 @@ HTML generated: products.html
 Im Unterordner \textit{programming/output} befindet sich bereits die HTML-Datei, die durch die durchgeführte Transformation für die im Projekt gegebenen Dokumente entstanden ist.
 
 \end{document}
-
-
