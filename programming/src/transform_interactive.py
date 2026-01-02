@@ -23,7 +23,7 @@ def transform_interactive():
     # let the user select xml and xslt files
     file_paths = filedialog.askopenfilenames(
         title="Select XML and XSLT files",
-        filetypes=[("XML or XSLT files", "*.xml *.xsl *.xslt")]
+        filetypes=[("XML or XSLT files", "*.xml *.xslt")]
     )
 
     # abort if not enough files were selected
@@ -35,7 +35,7 @@ def transform_interactive():
     xml_files = [f for f in file_paths if f.lower().endswith(".xml")]
 
     # filter xslt files
-    xslt_files = [f for f in file_paths if f.lower().endswith((".xsl", ".xslt"))]
+    xslt_files = [f for f in file_paths if f.lower().endswith((".xslt"))]
 
     # ensure valid selection
     if not xml_files or not xslt_files:
