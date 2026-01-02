@@ -32,7 +32,7 @@
 	<complexType name="ResistanceType">
 		<sequence>
 			<element name="value" type="float"/>
-			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="exponent" type="products:ExponentType" minOccurs="0" maxOccurs="1"/>
 			<element name="unit" type="string" fixed="&#8486;"/>
 			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
 		</sequence>
@@ -42,7 +42,7 @@
 	<complexType name="InductanceType">
 		<sequence>
 			<element name="value" type="float"/>
-			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="exponent" type="products:ExponentType" minOccurs="0" maxOccurs="1"/>
 			<element name="unit" type="string" fixed="H"/>
 			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
 		</sequence>
@@ -52,7 +52,7 @@
 	<complexType name="CapacitanceType">
 		<sequence>
 			<element name="value" type="float"/>
-			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="exponent" type="products:ExponentType" minOccurs="0" maxOccurs="1"/>
 			<element name="unit" type="string" fixed="F"/>
 			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
 		</sequence>
@@ -62,7 +62,7 @@
 	<complexType name="ForwardVoltageType">
 		<sequence>
 			<element name="value" type="float"/>
-			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="exponent" type="products:ExponentType" minOccurs="0" maxOccurs="1"/>
 			<element name="unit" type="string" fixed="V"/>
 			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
 		</sequence>
@@ -72,12 +72,26 @@
 	<complexType name="ReverseVoltageType">
 		<sequence>
 			<element name="value" type="float"/>
-			<element name="exponent" type="short" minOccurs="0" maxOccurs="1"/>
+			<element name="exponent" type="products:ExponentType" minOccurs="0" maxOccurs="1"/>
 			<element name="unit" type="string" fixed="V"/>
 			<element name="tolerance" type="products:ToleranceType" minOccurs="0" maxOccurs="1"/>
 		</sequence>
 		<attribute name="type" type="string" fixed="reverse voltage"/>
 	</complexType>
+	
+	
+	<simpleType name="ExponentType">
+	    <restriction base="short">
+	        <enumeration value="-12"/>
+	        <enumeration value="-9"/>
+	        <enumeration value="-6"/>
+	        <enumeration value="-3"/>
+	        <enumeration value="0"/>
+	        <enumeration value="3"/>
+	        <enumeration value="6"/>
+	        <enumeration value="9"/>
+	    </restriction>
+	</simpleType>
 	
 	
 	<complexType name="ToleranceType">
@@ -88,6 +102,7 @@
 		</simpleContent>
 	</complexType>
 
+
 	<complexType name="PriceType">
 		<simpleContent>
 			<extension base="float">
@@ -95,6 +110,7 @@
 			</extension>
 		</simpleContent>
 	</complexType>
+	
 	
 	<attributeGroup name="ProductAttributes">
 		<attribute name="id" type="ID" use="required"/>
