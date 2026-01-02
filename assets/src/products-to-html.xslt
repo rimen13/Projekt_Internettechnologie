@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:p="http://www.electronics.com/products">
 
@@ -11,7 +10,7 @@
             	<title>Product page</title>
             </head>
             <body>
-                <h1>Welcome to the product page</h1>
+                <h1>Welcome on the product page</h1>
                 <p>You can find our products here:</p>
                 <xsl:apply-templates select="p:products"/>
             </body>
@@ -113,21 +112,27 @@
 	<xsl:template match="p:product[@type='resistor']/p:resistance|p:product[@type='inductor']/p:inductance|p:product[@type='capacitor']/p:capacitance | 
 	p:product[@type='diode']/p:forwardVoltage | p:product[@type='diode']/p:reverseVoltage">
 			<xsl:value-of select="p:value"/>
+			<xsl:text> </xsl:text>
 			<xsl:apply-templates select="p:exponent"></xsl:apply-templates>
 			<xsl:value-of select="p:unit"/>
-
-		<td><xsl:value-of select="p:tolerance"/><xsl:text> </xsl:text><xsl:value-of select="p:tolerance/@unit"/></td>
+		    <td>
+            <xsl:choose>
+                <xsl:when test="p:tolerance">
+                	<xsl:value-of select="p:tolerance"/><xsl:text> </xsl:text><xsl:value-of select="p:tolerance/@unit"/>
+                </xsl:when>
+            	<xsl:otherwise>-</xsl:otherwise>
+            </xsl:choose>
+            </td>
 	</xsl:template>
 
 	<xsl:template match="p:exponent">
-		<xsl:if test=". = -12"> p</xsl:if>
-		<xsl:if test=". = -9"> n</xsl:if>
-		<xsl:if test=". = -6"> &#181;</xsl:if>
-		<xsl:if test=". = -3"> m</xsl:if>
-		<xsl:if test=". = 0"> </xsl:if>
-		<xsl:if test=". = 3"> k</xsl:if>
-		<xsl:if test=". = 6"> k</xsl:if>
-		<xsl:if test=". = 9"> M</xsl:if>
+		<xsl:if test=". = -12">p</xsl:if>
+		<xsl:if test=". = -9">n</xsl:if>
+		<xsl:if test=". = -6">&#181;</xsl:if>
+		<xsl:if test=". = -3">m</xsl:if>
+		<xsl:if test=". = 0"></xsl:if>
+		<xsl:if test=". = 3">k</xsl:if>
+		<xsl:if test=". = 6">M</xsl:if>
+		<xsl:if test=". = 9">G</xsl:if>
 	</xsl:template>
 </xsl:stylesheet>
-
