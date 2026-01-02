@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <products xmlns="http://www.electronics.com/products"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
-	        http://www.electronics.com/products
-	        products.xsd">
+>
 	<product id="R001" type="resistor">
 		<resistance>
 			<value>1</value>
