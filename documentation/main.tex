@@ -41,6 +41,7 @@ twoside = false
 \usepackage{subcaption}
 \usepackage{float}
 \usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
 \usepackage{scrlayer-scrpage}
 \clearpairofpagestyles
 
@@ -135,7 +136,7 @@ XSLT & XSL Transformations \\
 
 % Hauptteil
 
-\section{Projekübersicht}
+\section{Projektübersicht}
 
 \subsection{Zielstellung}
 
@@ -363,55 +364,63 @@ Die in den Kapiteln \ref{sec:xslt} und \ref{sec:fop} beschriebenen Transformatio
 
 
 
-\section{Programmierung} \label{sec:Programmierung}
+%\vspace{1cm}
+\section{Programmierung}
+\label{sec:Programmierung}
 
 \subsection{Grundlegende Informationen}
 
-Durch die XML-Programmierung sollen folgende Funktionalitäten implementiert werden:
+In diesem Projekt sollen folgende Funktionalitäten umgesetzt werden:
 
-\begin{enumerate}
-    \item Validierung eines XML-Dokuments gegen ein XSD-Schema
-    \item Abfrage von Informationen aus einem XML-Dokument
-    \item Transformation eines XML-Dokuments in eine HTML-Website
+\begin{enumerate}[itemsep=0pt,parsep=6pt]
+    \item Validierung einer XML-Datei gegen eine XSD-Datei
+    \item Abfrage ausgewählter Informationen aus einer XML-Datei
+    \item XSLT-Transformation einer XML-Datei zu einer HTML-Website
 \end{enumerate}
 
-Zur Umsetzung dieser Funktionalitäten wird im Rahmen dieses Projekts die Programmiersprache \textit{Python} verwendet. Um das die in den folgenden Kapiteln beschriebenen Befehle in der Kommandozeile ausführen zu können, muss \textit{Python} von der offiziellen Website https://www.python.org unter dem Reiter \textit{Downloads} installiert werden. Für dieses Projekt wurde Version 3.12.8 genutzt. Außerdem müssen die beiden Module \textit{lxml} und \textit{tkinter} installiert werden.
+Zur Implementierung dieser Funktionalitäten wurde die Programmiersprache \textit{Python} verwendet, da sie leistungsfähige Bibliotheken für die Verarbeitung von XML-Dateien bereitstellt. Über die Bibliothek \texttt{lxml} können XML-Parsing, Schema-Validierung und XSLT-Transformationen durchgeführt werden. Für die Programmierung der Funktionalitäten wurden insgesamt 9 Dateien erstellt, die sich folgendermaßen gliedern:
 
-Durch das Modul \textit{lxml} ist es möglich, diese Funktionalitäten umzusetzen.
+\begin{enumerate}[itemsep=6pt,parsep=6pt]
+    \item \textbf{Backend-Dateien (\texttt{*\_backend.py})} \\
+    Diese Dateien enthalten ausschließlich die Logik der jeweiligen Aufgabe (Abfrage, Validierung, Transformation). Sie werden von den Projekt- und Interaktiv- \linebreak modus-Dateien aufgerufen, wobei die entsprechenden Dateipfade übergeben werden.
 
+    \item \textbf{Projektmodus-Dateien (\texttt{*\_from\_project.py})} \\
+    Diese Dateien führen die jeweilige Aufgabe für die in diesem Projekt verwendeten Dateien aus. Darin werden die Dateipfade bestimmt und anschließend an die jeweilige Backend-Datei übergeben. 
 
-
-Damit die Befehle über die Kommandozeile aufgerufen werden können, muss zunächst ein lokaler Python Download erfolgen.
-
-HIER MUSS ICH ES MAL MIT MEINEM EIGENEN LINUX SYSTEM PROBIEREN!
-
-
-
-
-Für alle 3 Teilaufgaben existieren 3 getrennte Python-Dateien:
-
-\begin{enumerate}
-    \item Backend-Datei (\texttt{*\_backend.py}): enthält ausschließlich die Logik der jeweiligen Aufgabe und können nicht direkt ausgeführt werden
-    \item Projektmodus-Datei (\texttt{*\_from\_project.py}): führt die jeweilige Aufgabe mit den im Projekt erarbeiteten Dateien aus
-    \item Interaktiv-Datei (\texttt{*\_interactive.py}): ermöglicht die Auswahl beliebiger Dateien und führt die jeweilige Aufgabe für diese durch
+    \item \textbf{Interaktivmodus-Dateien (\texttt{*\_interactive.py})} \\
+    Diese Dateien ermöglichen dem Anwender die Auswahl beliebiger XML-, XSD- oder XSLT-Dateien über ein sich öffnendes Fenster. Dies wird durch die Verwendung des Moduls \texttt{tkinter} realisiert. Anschließend werden die Dateipfade an die jeweilige Backend-Datei übergeben.
 \end{enumerate}
 
-Die jeweiligen Dateien enthalten den beschriebenen Code, der ausführlich kommentiert ist. Die Dateien können ausgeführt werden, indem man zunächst die virtuelle Umgebung aktiviert und in der Kommandizeile in das Verzeichnis \texttt{programming/src} wechselt und den Befehl \texttt{python\ desired\_file.py} ausführt. Dabei ist \texttt{desired\_file.py} ein Platzhalter für den eigentlichen Dateinamen, der an dieser Stelle natürlich eingesetzt werden muss.
+Um die Dateien auszuführen, muss Python in der Version 3.12.8 (oder neuer) installiert sein. Für dieses Projekt wurden außerdem die Module \texttt{lxml} und \texttt{tkinter} verwendet, welche über eine virtuelle Umgebung installiert werden können. Der Aufruf der einzelnen Dateien erfolgt über die Kommandozeile. Dafür muss zunächst die virtuelle Umgebung aktiviert und anschließend in das Verzeichnis \texttt{programming/src} gewechselt werden. Anschließend kann der Befehl \texttt{python validate\_from\_project.py} ausgeführt werden. Dabei kann \texttt{validate\_from\_project.py} durch die 5 weiteren Dateinamen \texttt{validate\_interactive.py}, \texttt{query\_from\_project.py}, \texttt{query\_interactive.py}, \texttt{transform\_from\_project.py} und \texttt{transform\_interactive.py} ersetzt werden. Die 3 Backend-Dateien können prinzipiell ebenfalls aufgerufen werden, liefern allerdings kein Ergebnis.
+
+
+
+\subsection{Validierung}
+
+Die Validierung eines XML-Dokuments gegen ein XSD-Schema erfolgt in der Datei \texttt{validate\_backend.py}. Dabei werden sowohl das XML-Dokument als auch die XSD-Datei mithilfe von \texttt{etree.parse()} eingelesen. Anschließend wird aus der XSD-Datei ein \texttt{XMLSchema}-Objekt erzeugt, welches die in der Schema-Datei definierten Struktur- und Typregeln bereitstellt. Die eigentliche Validierung erfolgt durch den Aufruf der Methode \texttt{schema.validate(xml\_doc)}. Bei erfolgreicher Validierung wird in der Kommandozeile eine entsprechende Erfolgsmeldung ausgegeben. Schlägt die Validierung fehl, wird zusätzlich das Fehlerprotokoll des Schemas ausgegeben, welches detaillierte Informationen zur Art und Position der Regelverletzungen enthält.
+
+Beim Ausführen der Datei \texttt{validate\_from\_project.py} werden die in diesem Projekt enthaltene XML-Datei und die zugehörige XSD-Datei an die Backend-Datei übergeben. Nach Abschluss der Validierung wird in der Kommandozeile das Ergebnis \texttt{VALIDATION RESULT: products.xml is valid according to products.xsd} ausgegeben. Im interaktiven Modus über die Datei \texttt{validate\_interactive.py} kann der Anwender in einem sich öffnenden Fenster beliebige XML- und XSD-Dateien auswählen.
 
 
 
 \subsection{Abfrage}
 
-Bei der Abfrage werden gezielt Informationen aus einem XML-Dokument extrahiert, indem XPath verwendet wird. Hierbei werden 3 verschiedene Abfragen durchgeführt:
+Die Abfrage von Daten aus einer XML-Datei ist in der Datei \texttt{query\_backend.py} implementiert und nutzt \textit{XPath}-Ausdrücke zur gezielten Extraktion von Informationen aus der XML-Datei. Zu Beginn wird das XML-Dokument mithilfe der Funktion \texttt{etree.parse(xml\_path)} eingelesen. Diese Funktion liest die übergebene XML-Datei ein und erzeugt einen internen XML-Baum, auf dem anschließend \textit{XPath}-Abfragen ausgeführt werden können.
+
+Da das verwendete XML-Dokument einen Namespace definiert, ist es erforderlich, ein entsprechendes Namespace-Mapping zu definieren. Die \textit{XPath}-Abfragen müssen diesen Namespace explizit berücksichtigen, da andernfalls keine Elemente gefunden würden. Anschließend werden drei \textit{XPath}-Abfragen durchgeführt:
 
 \begin{enumerate}
-    \item Welche Produkt-IDs gibt es?
-    \item Wie heißen die Hersteller? (Hierbei sollen mehrfach aufgeführte Hersteller nur einmal aufgeführt werden.)
-    \item Was ist die Gesamtanzahl aller Widerstände im Lager?
+    \item \textbf{Ermittlung aller Produkt-IDs} \\
+    Über den \textit{XPath}-Ausdruck \texttt{//p:product/@id} werden alle \texttt{id}-Attribute sämtlicher Produkte extrahiert. Das Ergebnis ist eine Liste von Zeichenketten.
+
+    \item \textbf{Abfrage aller eindeutigen Hersteller} \\
+    Mit dem \textit{XPath}-Ausdruck \texttt{//p:product/p:manufacturer/text()} werden alle in der XML-Datei enthaltenen Herstellernamen ausgelesen. Da einzelne Hersteller mehrfach auftreten können, werden mehrfach aufgeführte Hersteller mithilfe der Python-Funktionen \texttt{set()} und \texttt{sorted()} herausfiltert. Als Ergebnis wird die alphabetisch sortierte Liste der Hersteller ausgegeben.
+
+    \item \textbf{Berechnung der Gesamtanzahl von Widerständen}  
+    Mithilfe eines \textit{XPath}-Ausdrucks werden gezielt Produkte mit dem Attribut \texttt{type='resistor'} ausgewählt und deren \texttt{amount}-Werte extrahiert. Diese werden anschließend aufsummiert und das Ergebnis ausgegeben.
 \end{enumerate}
 
-Führt man die Datei \texttt{query\_from\_project.py} für den Projektmodus aus, dann wird in der Kommandozeile folgendes ausgegeben:
-
+Die Datei \texttt{query\_from\_project.py} ruft diese Backend-Funktion mit der projektspezifischen XML-Datei auf und gibt die Ergebnisse in der Kommandozeile aus:
 \begin{verbatim}
 Query 1: Retrieve all product IDs.
 Result: ['R001', 'R002', 'R003', 'L001', 'L002', 'C001', 'C002', 
@@ -425,31 +434,16 @@ Result: ['Diodes Incorporated', 'Micro Commercial Components',
 Query 3: Calculate the total number of resistors in stock.
 Result: 864907
 \end{verbatim}
-
-Möchte man die interaktive Abfrage durchführen, kann man über die Datei \texttt{query\_from\_project.py} eine XML-Datei aus dem Datei-Explorer auswählen. Anschließend wird zunächst überprüft, ob die angegebene Datei das vorgegebene XSD-Schema erfüllt. Ist dies nicht der Fall, können die Abfragen nicht durchgeführt werden und es wird eine Fehlermeldung ausgegeben. Ist die XML-Datei gültig, werden ebenfalls die 3 Abfragen getätigt und die Ergebnisse ausgegeben.
-
-
-
-\subsection{Validierung}
-
-Um eine XML-Datei gegen ein XSD-Schema validieren zu können, kommen die Dateien \texttt{validate\_from\_project.py} und \texttt{validate\_interactive.py} zur Anwendung. Dabei kann in ersterem Fall die XML-Datei gegen die XSD-Datei aus dem gegebenen Projekt validiert werden. Für die zweite Datei ist die Auswahl einer beliebigen XML- und XSD-Datei im Datei-Explorer möglich. Die Ausgabe in der Kommandozeile für eine gültige oder nicht gültige XML-Datei lautet folgendermaßen (kommt auch mit automatisch generierter XSD raus):
-
-\begin{verbatim}
-VALIDATION RESULT: products.xml is valid according to products.xsd
-
-VALIDATION RESULT: products.xml is NOT valid according to products.xsd
-\end{verbatim}
+Im interaktiven Modus (\texttt{query\_interactive.py}) kann der Anwender aus einem sich öffnenden Fenster die XML-Datei auswählen, aus welcher er die Daten abfragen möchte. Allerdings können die beschriebenen Abfragen nur für XML-Dateien durchgeführt werden, welche die Validierung gegen die XSD-Datei \texttt{products.xsd} erfüllen. Demzufolge wird zunächst über die Backend-Datei der Validierung \texttt{validate\_backend.py} überprüft, ob die ausgewählte XML-Datei valide ist. Ist dies der Fall, werden auch hier die Ergebnisse der Abfragen in der Kommandozeile ausgegeben. Andernfalls bricht das Programm mit einem entsprechenden Hinweis ab.
 
 
 
 \subsection{Transformation}
 
-Die Transformation erfolgt über die Dateien \texttt{transfrom\_from\_project.py} und \texttt{transform\_interactive.py}. Dabei wird entweder die XML- und XSLT-Datei des gegebenen Projekts verwendet oder im interaktiven Modus werden diese beiden Dateitypen vom Anwender übergeben. Anschließend wird die Transformation in eine HTML-Datei durchgeführt und in den \textit{output}-Ordner (in \textit{programming}) gelegt, sodass sich der Anwender die entstehende HTML-Website anschauen kann. Im interaktiven Modus kann sich der Anwender den Zielordner selsbt aussuchen. In der Kommandozeile kommt der Hinweis:
+Die Transformation einer XML-Datei in eine HTML-Website mithilfe einer XSLT-Datei ist in der Datei \texttt{transform\_backend.py} implementiert. Zu Beginn werden sowohl die übergebene XML-Datei als auch die zugehörige XSLT-Datei mithilfe der Funktion \texttt{etree.parse()} eingelesen. Anschließend wird aus der XSLT-Datei mittels \texttt{etree.XSLT()} ein Transformationsobjekt erzeugt. Dieses Objekt enthält die in der XSLT-Datei definierten Template-Regeln. Die eigentliche Transformation erfolgt durch den Aufruf dieses Transformationsobjekts auf das geparste XML-Dokument. Das Ergebnis ist ein neues Dokumentenobjekt, das die transformierte HTML-Struktur enthält und anschließend als HTML-Datei gespeichert wird.
 
-\begin{verbatim}
-HTML generated: products.html
-\end{verbatim}
+Die Datei \texttt{transform\_from\_project.py} ruft diese Backend-Funktion mit den projektspezifischen XML- und XSLT-Dateien auf und legt die erzeugte HTML-Datei im vorgesehenen Ausgabeverzeichnis ab. Im interaktiven Modus (\texttt{transform\_interactive.py}) kann der Anwender sowohl die Eingabedateien als auch den Zielpfad frei wählen.
 
-Im Unterordner \textit{programming/output} befindet sich bereits die HTML-Datei, die durch die durchgeführte Transformation für die im Projekt gegebenen Dokumente entstanden ist.
+Nach erfolgreicher Transformation wird der Anwender in der Kommandozeile über die Erstellung der HTML-Datei mit dem Hinweis \texttt{HTML generated: products.html} informiert. Diese durch die Projektdokumente erzeugte HTML-Datei \texttt{products.html} befindet sich bereits im Unterordner \texttt{programming/output}.
 
 \end{document}
